@@ -20,9 +20,9 @@
     <!-- version numbers official build -->
     <PropertyGroup Condition=" '$(TeamCityBuild)' == 'true' ">
         <!-- update this one to indicate new releases! -->
-        <MajorVersion>0</MajorVersion>
-        <MinorVersion>0</MinorVersion>
-        <BugfixVersion>0</BugfixVersion>
+        <MajorVersion>1</MajorVersion> <!-- keep in sync with roman version number! -->
+        <MinorVersion>0</MinorVersion> <!-- bump for backwards compatible changes -->
+        <BugfixVersion>0</BugfixVersion> <!-- bump for bugfix releases -->
         <!-- GAC version -->
         <AssemblyVersion>$(MajorVersion).0.0</AssemblyVersion>
         <Version>$(MajorVersion).$(MinorVersion).$(BugfixVersion)</Version>
