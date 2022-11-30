@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\common.props"/>
+
+    <ItemGroup>
+        <!-- exclude from code coverage -->
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- Stylecop -->
+        <CodeAnalysisRuleSet>..\Analyzer.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="PPWCode.Vernacular.Exceptions.IV" Version="1.1.0"/>
+    </ItemGroup>
+
+</Project>

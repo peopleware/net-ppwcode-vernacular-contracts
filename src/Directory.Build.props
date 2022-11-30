@@ -1,0 +1,137 @@
+<Project>
+
+    <!-- https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
+
+    <!-- version number -->
+    <PropertyGroup>
+        <!-- buildserver must overrule these -->
+        <TeamCityBuild>false</TeamCityBuild>
+    </PropertyGroup>
+
+    <!-- version numbers local build: always 0.0.0 -->
+    <PropertyGroup Condition=" '$(TeamCityBuild)' == 'false' ">
+        <!-- GAC version -->
+        <AssemblyVersion>0.0.0</AssemblyVersion>
+        <Version>0.0.0</Version>
+        <FileVersion>0.0.0.0</FileVersion>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    </PropertyGroup>
+
+    <!-- version numbers official build -->
+    <PropertyGroup Condition=" '$(TeamCityBuild)' == 'true' ">
+        <!-- update this one to indicate new releases! -->
+        <MajorVersion>0</MajorVersion>
+        <MinorVersion>0</MinorVersion>
+        <BugfixVersion>0</BugfixVersion>
+        <!-- GAC version -->
+        <AssemblyVersion>$(MajorVersion).0.0</AssemblyVersion>
+        <Version>$(MajorVersion).$(MinorVersion).$(BugfixVersion)</Version>
+        <FileVersion>$(MajorVersion).$(MinorVersion).$(BugfixVersion)</FileVersion>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    </PropertyGroup>
+
+    <!-- nuget package -->
+    <PropertyGroup>
+        <Description>Contracts library</Description>
+        <Product>PPWCode.Vernacular.Contracts</Product>
+        <Authors>rvdginste</Authors>
+        <Company>PeopleWare</Company>
+        <Copyright>Copyright © PeopleWare 2022</Copyright>
+        <PackageTags>ppwcode vernacular contracts dotnetcore</PackageTags>
+
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://bitbucket.org/ppwcode/dotnet-vernacular-contracts.git</RepositoryUrl>
+
+        <PackageTags>ppwcode vernacular contracts dotnetcore netcore</PackageTags>
+        <PackageProjectUrl>https://github.com/peopleware/net-ppwcode-vernacular-exceptions</PackageProjectUrl>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageIcon>ppwcode_logo.jpg</PackageIcon>
+
+        <PackageReleaseNotes>
+            <![CDATA[
+1.0.0 Initial release of library
+      ]]>
+        </PackageReleaseNotes>
+
+        <!-- SourceLink support -->
+        <!-- embed source code not in git repository -->
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <!-- embed all source code in the pdb, so not dependent from remote repo -->
+        <EmbedAllSources>true</EmbedAllSources>
+        <!-- publish the repository URL in the nuget package -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <!-- continuous integration build -->
+        <ContinuousIntegrationBuild>$(TeamCityBuild)</ContinuousIntegrationBuild>
+        <!-- include the pdb in the nuget package -->
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    </PropertyGroup>
+
+    <!-- include supporting files in NuGet package -->
+    <ItemGroup>
+        <None Include="../../assets/ppwcode_logo.jpg" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="../../LICENSE" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="../../NOTICE" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="../../README.md" Pack="true" PackagePath="/" Visible="false"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- Target frameworks -->
+        <TargetFramework>net6.0</TargetFramework>
+
+        <!-- Configurations -->
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU</Platforms>
+
+        <!-- content -->
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    </PropertyGroup>
+
+    <!-- set default for configuration -->
+    <PropertyGroup Condition=" '$(Configuration)' == '' ">
+        <Configuration>Debug</Configuration>
+    </PropertyGroup>
+
+    <!-- set default for platform -->
+    <PropertyGroup Condition=" '$(Platform)' == '' ">
+        <Platform>AnyCPU</Platform>
+    </PropertyGroup>
+
+    <!-- compiler configuration -->
+    <PropertyGroup>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <WarningLevel>4</WarningLevel>
+        <NoWarn>1591;1592;1573;1571;1570;1572;1701;1702;1705;1300;</NoWarn>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningsAsErrors/>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+        <LangVersion>10.0</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <DefineConstants>DEBUG;TRACE;CONTRACTS_PRE;CONTRACTS_POST;CONTRACTS_INVARIANT;CONTRACTS_ASSERT;JETBRAINS_ANNOTATIONS</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE;CONTRACTS_PRE;CONTRACTS_POST;CONTRACTS_INVARIANT;CONTRACTS_ASSERT;JETBRAINS_ANNOTATIONS</DefineConstants>
+    </PropertyGroup>
+
+    <!-- build paths -->
+    <PropertyGroup>
+        <OutputPath>..\..\scratch\bin\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</OutputPath>
+        <IntermediateOutputPath>..\..\scratch\obj\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</IntermediateOutputPath>
+        <BaseIntermediateOutputPath>..\..\scratch\bob\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</BaseIntermediateOutputPath>
+        <DocumentationFile>..\..\scratch\bin\$(MSBuildProjectName)-$(Configuration)-$(Platform)\$(MSBuildProjectName).xml</DocumentationFile>
+    </PropertyGroup>
+
+</Project>

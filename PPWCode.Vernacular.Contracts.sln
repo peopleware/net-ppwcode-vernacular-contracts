@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPWCode.Vernacular.Contracts.I.Tests", "src\PPWCode.Vernacular.Contracts.I.Tests\PPWCode.Vernacular.Contracts.I.Tests.csproj", "{8BBB8BF2-B5D0-4246-BF79-2E43D9D588BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyzers", "analyzers", "{29457459-4B19-4980-B5DB-6F9A0A4BE2E3}"
+	ProjectSection(SolutionItems) = preProject
+		src\Analyzer.ruleset = src\Analyzer.ruleset
+		src\Analyzer-Tests.ruleset = src\Analyzer-Tests.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-pipeline", "build-pipeline", "{B39487DD-1F53-4044-A81F-3814E12C1048}"
+	ProjectSection(SolutionItems) = preProject
+		bitbucket-pipelines.yml = bitbucket-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{9DBC1091-0B72-427D-AC3E-3E0E680B905B}"
+	ProjectSection(SolutionItems) = preProject
+		src\common.props = src\common.props
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPWCode.Vernacular.Contracts.I", "src\PPWCode.Vernacular.Contracts.I\PPWCode.Vernacular.Contracts.I.csproj", "{826C29DB-43F8-49DB-BD84-44B315AC2EA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BBB8BF2-B5D0-4246-BF79-2E43D9D588BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BBB8BF2-B5D0-4246-BF79-2E43D9D588BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BBB8BF2-B5D0-4246-BF79-2E43D9D588BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BBB8BF2-B5D0-4246-BF79-2E43D9D588BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{826C29DB-43F8-49DB-BD84-44B315AC2EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{826C29DB-43F8-49DB-BD84-44B315AC2EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{826C29DB-43F8-49DB-BD84-44B315AC2EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{826C29DB-43F8-49DB-BD84-44B315AC2EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E504E53D-8B7E-4F42-B2AE-70766127ED17}
+	EndGlobalSection
+EndGlobal

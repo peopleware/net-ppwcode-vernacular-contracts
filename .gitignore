@@ -1,0 +1,22 @@
+# User-specific files
+*.suo
+*.user
+
+# Visual Studio
+.vs/
+
+# vs launch settings
+/src/*/Properties/launchSettings.json
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet Packages
+*.nupkg
+
+# scratch directory
+/scratch
+
+# test reports
+/test-reports

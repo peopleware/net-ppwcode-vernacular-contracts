@@ -1,0 +1,41 @@
+definitions:
+  steps:
+    - step: &buildTestPackage
+        name: Build, test and package library code
+        image: ppwcode/azure-build-tools:latest
+        script:
+          # variables
+          - VERSION=`printf %05d ${BITBUCKET_BUILD_NUMBER}`
+          - CONFIG=Release
+          - git submodule update --init
+          # restore nuget packages
+          - dotnet restore /p:Configuration="${CONFIG}"
+          # build all projects
+          - dotnet build --no-restore --configuration "${CONFIG}" /p:TeamCityBuild=true /p:BuildNumber="${BITBUCKET_BUILD_NUMBER}"
+          # run tests
+          - dotnet test -m:1 --no-build --configuration "${CONFIG}" --logger "junit;LogFilePath=../../test-reports/{assembly}.results.xml" /p:TeamCityBuild=true /p:BuildNumber="${BITBUCKET_BUILD_NUMBER}"
+          # create nuget packages
+          - dotnet pack --no-build --configuration "${CONFIG}" /p:TeamCityBuild=true /p:BuildNumber="${BITBUCKET_BUILD_NUMBER}"
+          # Tag
+          - scripts/common/git/tagBitbucket.sh
+        artifacts:
+          - scratch/bin/*/*.nupkg
+    - step: &publish
+        name: Publish NuGet packages
+        image: ppwcode/azure-build-tools:latest
+        script:
+          # variables
+          - VERSION=`printf %05d ${BITBUCKET_BUILD_NUMBER}`
+          - git submodule update --init
+          # find packages matching the current tag
+          - echo "Find NuGet packages for tag ${BITBUCKET_TAG}" && ls -l ./scratch/bin/*/*${BITBUCKET_TAG}.nupkg
+          # publish generated nuget packages
+          - for pkg in ./scratch/bin/*/*${BITBUCKET_TAG}.nupkg ; do dotnet nuget push $pkg --api-key "${NUGET_API_KEY}" --source nuget ; done
+pipelines:
+  branches:
+    master:
+      - step: *buildTestPackage
+  tags:
+    '*':
+      - step: *buildTestPackage
+      - step: *publish
