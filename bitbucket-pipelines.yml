@@ -36,6 +36,6 @@ pipelines:
     master:
       - step: *buildTestPackage
   tags:
-    '*':
+    '1.*.*':
       - step: *buildTestPackage
       - step: *publish
