@@ -36,8 +36,7 @@
         <Product>PPWCode.Vernacular.Contracts</Product>
         <Authors>rvdginste</Authors>
         <Company>PeopleWare</Company>
-        <Copyright>Copyright © PeopleWare 2022</Copyright>
-        <PackageTags>ppwcode vernacular contracts dotnetcore</PackageTags>
+        <Copyright>Copyright © PeopleWare 2022-2023</Copyright>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://bitbucket.org/ppwcode/dotnet-vernacular-contracts.git</RepositoryUrl>
@@ -77,7 +76,7 @@
 
     <PropertyGroup>
         <!-- Target frameworks -->
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
 
         <!-- Configurations -->
         <Configurations>Debug;Release</Configurations>

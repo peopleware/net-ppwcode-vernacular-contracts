@@ -8,6 +8,9 @@
 
         <!-- Package -->
         <IsPackable>false</IsPackable>
+
+        <!-- target framework -->
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
