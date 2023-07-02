@@ -2,11 +2,6 @@
 
     <Import Project="..\common.props"/>
 
-    <ItemGroup>
-        <!-- exclude from code coverage -->
-        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute"/>
-    </ItemGroup>
-
     <PropertyGroup>
         <!-- Stylecop -->
         <CodeAnalysisRuleSet>..\Analyzer-Tests.ruleset</CodeAnalysisRuleSet>
