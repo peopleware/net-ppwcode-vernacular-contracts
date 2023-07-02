@@ -50,6 +50,7 @@
         <PackageReleaseNotes>
             <![CDATA[
 1.0.0 Initial release of library
+1.1.0 Target .net standard 2.0 + upgraded dependencies
       ]]>
         </PackageReleaseNotes>
 
