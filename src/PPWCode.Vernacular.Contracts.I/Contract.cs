@@ -18,7 +18,7 @@ using JetBrains.Annotations;
 namespace PPWCode.Vernacular.Contracts.I;
 
 [UsedImplicitly]
-[SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "The whole point is to validation conditions")]
+[SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "The whole point is to validate conditions")]
 public static class Contract
 {
     [Conditional("CONTRACTS_PRE")]
