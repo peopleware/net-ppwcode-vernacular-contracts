@@ -36,7 +36,7 @@
         <Product>PPWCode.Vernacular.Contracts</Product>
         <Authors>rvdginste</Authors>
         <Company>PeopleWare</Company>
-        <Copyright>Copyright © PeopleWare 2022-2023</Copyright>
+        <Copyright>Copyright © PeopleWare 2022-2024</Copyright>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://bitbucket.org/ppwcode/dotnet-vernacular-contracts.git</RepositoryUrl>
@@ -51,6 +51,7 @@
             <![CDATA[
 1.0.0 Initial release of library
 1.1.0 Target .net standard 2.0 + upgraded dependencies
+1.2.0 Add support for Microsoft nullability attributes
       ]]>
         </PackageReleaseNotes>
 
