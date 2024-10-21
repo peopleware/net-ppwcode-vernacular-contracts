@@ -1,4 +1,4 @@
-// Copyright 2022 by PeopleWare n.v.
+// Copyright 2024 by PeopleWare n.v.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,13 +11,14 @@
 
 #if NETSTANDARD2_0
 using System;
-#endif
 using System.Runtime.CompilerServices;
-#if NETSTANDARD2_0
 using System.Runtime.Serialization;
-#endif
 
 using JetBrains.Annotations;
+#else
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+#endif
 
 namespace PPWCode.Vernacular.Contracts.I;
 
@@ -29,8 +30,18 @@ public class ArgumentOutOfRangeViolation : PreConditionViolation
     private const string ParameterNameKey = nameof(ParameterNameKey);
 
     public ArgumentOutOfRangeViolation(
-        [NotNull] string parameterName,
-        [NotNull] string message,
+#if NETSTANDARD2_0
+        [NotNull]
+#else
+        [DisallowNull]
+#endif
+        string parameterName,
+#if NETSTANDARD2_0
+        [NotNull]
+#else
+        [DisallowNull]
+#endif
+        string message,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = 0)

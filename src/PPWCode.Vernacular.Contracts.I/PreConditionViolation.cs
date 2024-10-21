@@ -1,4 +1,4 @@
-// Copyright 2022 by PeopleWare n.v.
+// Copyright 2024 by PeopleWare n.v.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,9 +12,11 @@
 #if NETSTANDARD2_0
 using System;
 using System.Runtime.Serialization;
-#endif
 
 using JetBrains.Annotations;
+#else
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 namespace PPWCode.Vernacular.Contracts.I;
 
@@ -24,7 +26,12 @@ namespace PPWCode.Vernacular.Contracts.I;
 public class PreConditionViolation : ContractViolation
 {
     public PreConditionViolation(
-        [NotNull] string message,
+#if NETSTANDARD2_0
+        [NotNull]
+#else
+        [DisallowNull]
+#endif
+        string message,
         string filePath,
         string memberName,
         int? lineNumber)
