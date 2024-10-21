@@ -9,15 +9,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if NETSTANDARD2_0
 using System;
+#endif
 using System.Runtime.CompilerServices;
+#if NETSTANDARD2_0
 using System.Runtime.Serialization;
+#endif
 
 using JetBrains.Annotations;
 
 namespace PPWCode.Vernacular.Contracts.I;
 
+#if NETSTANDARD2_0
 [Serializable]
+#endif
 public class ArgumentOutOfRangeViolation : PreConditionViolation
 {
     private const string ParameterNameKey = nameof(ParameterNameKey);
@@ -37,10 +43,12 @@ public class ArgumentOutOfRangeViolation : PreConditionViolation
         ParameterName = parameterName;
     }
 
+#if NETSTANDARD2_0
     protected ArgumentOutOfRangeViolation(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
     }
+#endif
 
     public string ParameterName
     {

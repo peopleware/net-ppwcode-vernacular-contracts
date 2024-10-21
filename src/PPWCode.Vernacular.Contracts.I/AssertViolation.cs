@@ -9,14 +9,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if NETSTANDARD2_0
 using System;
 using System.Runtime.Serialization;
+#endif
 
 using JetBrains.Annotations;
 
 namespace PPWCode.Vernacular.Contracts.I;
 
+#if NETSTANDARD2_0
 [Serializable]
+#endif
 public class AssertViolation : ContractViolation
 {
     public AssertViolation(
@@ -32,8 +36,10 @@ public class AssertViolation : ContractViolation
     {
     }
 
+#if NETSTANDARD2_0
     protected AssertViolation(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
     }
+#endif
 }

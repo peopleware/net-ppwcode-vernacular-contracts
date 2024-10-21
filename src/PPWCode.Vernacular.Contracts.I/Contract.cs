@@ -24,6 +24,7 @@ public static class Contract
     [Conditional("CONTRACTS_PRE")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [ContractAnnotation("condition: false => halt")]
+
     public static void Requires(
         bool condition,
         [CallerFilePath] string filePath = "",
