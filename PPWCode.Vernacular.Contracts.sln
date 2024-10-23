@@ -12,9 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analyzers", "analyzers", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build-pipeline", "build-pipeline", "{B39487DD-1F53-4044-A81F-3814E12C1048}"
-	ProjectSection(SolutionItems) = preProject
-		bitbucket-pipelines.yml = bitbucket-pipelines.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{9DBC1091-0B72-427D-AC3E-3E0E680B905B}"
 	ProjectSection(SolutionItems) = preProject
