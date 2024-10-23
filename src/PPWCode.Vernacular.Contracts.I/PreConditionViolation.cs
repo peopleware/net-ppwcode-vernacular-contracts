@@ -9,7 +9,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 using System;
 using System.Runtime.Serialization;
 
@@ -20,13 +20,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace PPWCode.Vernacular.Contracts.I;
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 [Serializable]
 #endif
 public class PreConditionViolation : ContractViolation
 {
     public PreConditionViolation(
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
         [NotNull]
 #else
         [DisallowNull]
@@ -43,7 +43,7 @@ public class PreConditionViolation : ContractViolation
     {
     }
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     protected PreConditionViolation(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {

@@ -6,7 +6,11 @@
         </PackageReference>
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <ItemGroup Condition="
+                     ('$(TargetFramework)' == 'netstandard2.0')
+                     Or ('$(TargetFramework)' == 'net462')
+                     Or ('$(TargetFramework)' == 'net472')
+                     Or ('$(TargetFramework)' == 'net481') ">
         <PackageReference Include="JetBrains.Annotations" Version="2024.2.0"/>
     </ItemGroup>
 </Project>

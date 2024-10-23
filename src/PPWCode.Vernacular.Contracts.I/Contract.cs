@@ -12,13 +12,13 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 using JetBrains.Annotations;
 #endif
 
 namespace PPWCode.Vernacular.Contracts.I;
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 [UsedImplicitly]
 #endif
 [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "The whole point is to validate conditions")]
@@ -26,11 +26,11 @@ public static class Contract
 {
     [Conditional("CONTRACTS_PRE")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
 #endif
     public static void Requires(
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETFRAMEWORK)
         [DoesNotReturnIf(false)]
 #endif
         bool condition,
@@ -50,11 +50,11 @@ public static class Contract
 
     [Conditional("CONTRACTS_POST")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
 #endif
     public static void Ensures(
-#if !NETSTANDARD2_0
+#if !(NETSTANDARD2_0 || NETFRAMEWORK)
         [DoesNotReturnIf(false)]
 #endif
         bool condition,
@@ -74,11 +74,11 @@ public static class Contract
 
     [Conditional("CONTRACTS_INVARIANT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
 #endif
     public static void Invariant(
-#if !NETSTANDARD2_0
+#if NET6_0_OR_GREATER
         [DoesNotReturnIf(false)]
 #endif
         bool condition,
@@ -98,11 +98,11 @@ public static class Contract
 
     [Conditional("CONTRACTS_ASSERT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
 #endif
     public static void Assert(
-#if !NETSTANDARD2_0
+#if NET6_0_OR_GREATER
         [DoesNotReturnIf(false)]
 #endif
         bool condition,
@@ -122,11 +122,11 @@ public static class Contract
 
     [Conditional("CONTRACTS_ASSERT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
 #endif
     private static void InternalAssert(
-#if !NETSTANDARD2_0
+#if NET6_0_OR_GREATER
         [DoesNotReturnIf(false)]
 #endif
         bool condition,
@@ -145,14 +145,14 @@ public static class Contract
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [AssertionMethod]
 #endif
     public static bool Assume(
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
         [AssertionCondition(AssertionConditionType.IS_TRUE)]
 #endif
-#if !NETSTANDARD2_0
+#if NET6_0_OR_GREATER
         [DoesNotReturnIf(false)]
 #endif
         bool condition,

@@ -9,7 +9,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 using System;
 using System.Runtime.Serialization;
 
@@ -22,7 +22,7 @@ using PPWCode.Vernacular.Exceptions.IV;
 
 namespace PPWCode.Vernacular.Contracts.I;
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 [Serializable]
 #endif
 public class ContractViolation : ProgrammingError
@@ -32,7 +32,7 @@ public class ContractViolation : ProgrammingError
     private const string LineNumberKey = nameof(LineNumberKey);
 
     public ContractViolation(
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
         [NotNull]
 #else
         [DisallowNull]
@@ -48,7 +48,7 @@ public class ContractViolation : ProgrammingError
         LineNumber = lineNumber;
     }
 
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     protected ContractViolation(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {

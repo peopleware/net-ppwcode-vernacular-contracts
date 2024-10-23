@@ -78,7 +78,7 @@
 
     <PropertyGroup>
         <!-- Target frameworks -->
-        <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0;net8.0;net462;net472;net481</TargetFrameworks>
 
         <!-- Configurations -->
         <Configurations>Debug;Release</Configurations>
