@@ -1,4 +1,4 @@
-// Copyright 2022 by PeopleWare n.v.
+// Copyright 2024 by PeopleWare n.v.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -9,16 +9,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 using System;
 using System.Runtime.Serialization;
 
 using JetBrains.Annotations;
+#else
+using System.Diagnostics.CodeAnalysis;
+#endif
 
 using PPWCode.Vernacular.Exceptions.IV;
 
 namespace PPWCode.Vernacular.Contracts.I;
 
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 [Serializable]
+#endif
 public class ContractViolation : ProgrammingError
 {
     private const string FilePathKey = nameof(FilePathKey);
@@ -26,7 +32,12 @@ public class ContractViolation : ProgrammingError
     private const string LineNumberKey = nameof(LineNumberKey);
 
     public ContractViolation(
-        [NotNull] string message,
+#if NETSTANDARD2_0 || NET462_OR_GREATER
+        [NotNull]
+#else
+        [DisallowNull]
+#endif
+        string message,
         string filePath,
         string memberName,
         int? lineNumber)
@@ -37,10 +48,12 @@ public class ContractViolation : ProgrammingError
         LineNumber = lineNumber;
     }
 
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     protected ContractViolation(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
     }
+#endif
 
     public string FilePath
     {

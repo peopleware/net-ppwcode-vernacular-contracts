@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="PPWCode.Vernacular.Exceptions.IV" Version="1.1.0"/>
+        <PackageReference Include="PPWCode.Vernacular.Exceptions.IV" />
     </ItemGroup>
 
 </Project>

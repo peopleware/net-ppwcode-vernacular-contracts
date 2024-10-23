@@ -1,4 +1,4 @@
-// Copyright 2022 by PeopleWare n.v.
+// Copyright 2024 by PeopleWare n.v.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -12,19 +12,27 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 using JetBrains.Annotations;
+#endif
 
 namespace PPWCode.Vernacular.Contracts.I;
 
+#if NETSTANDARD2_0 || NET462_OR_GREATER
 [UsedImplicitly]
-[SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "The whole point is to validation conditions")]
+#endif
+[SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "The whole point is to validate conditions")]
 public static class Contract
 {
     [Conditional("CONTRACTS_PRE")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
+#endif
     public static void Requires(
+#if !(NETSTANDARD2_0 || NETFRAMEWORK)
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
@@ -42,8 +50,13 @@ public static class Contract
 
     [Conditional("CONTRACTS_POST")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
+#endif
     public static void Ensures(
+#if !(NETSTANDARD2_0 || NETFRAMEWORK)
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
@@ -61,8 +74,13 @@ public static class Contract
 
     [Conditional("CONTRACTS_INVARIANT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
+#endif
     public static void Invariant(
+#if NET6_0_OR_GREATER
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
@@ -80,8 +98,13 @@ public static class Contract
 
     [Conditional("CONTRACTS_ASSERT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
+#endif
     public static void Assert(
+#if NET6_0_OR_GREATER
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
@@ -99,8 +122,13 @@ public static class Contract
 
     [Conditional("CONTRACTS_ASSERT")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [ContractAnnotation("condition: false => halt")]
+#endif
     private static void InternalAssert(
+#if NET6_0_OR_GREATER
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         string filePath,
         string memberName,
@@ -117,9 +145,16 @@ public static class Contract
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NETSTANDARD2_0 || NET462_OR_GREATER
     [AssertionMethod]
+#endif
     public static bool Assume(
+#if NETSTANDARD2_0 || NET462_OR_GREATER
         [AssertionCondition(AssertionConditionType.IS_TRUE)]
+#endif
+#if NET6_0_OR_GREATER
+        [DoesNotReturnIf(false)]
+#endif
         bool condition,
         [CallerFilePath] string filePath = "",
         [CallerMemberName] string memberName = "",
