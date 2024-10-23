@@ -72,6 +72,7 @@
 
         <!-- use package lock files -->
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <RestoreLockedMode>true</RestoreLockedMode>
     </PropertyGroup>
 
     <!-- set default for configuration -->
