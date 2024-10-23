@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\common.props"/>
+    <Import Project="..\common-tests.props"/>
 
     <PropertyGroup>
         <!-- Stylecop -->
@@ -10,19 +10,8 @@
         <IsPackable>false</IsPackable>
 
         <!-- target framework -->
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0;net472;net481</TargetFrameworks>
     </PropertyGroup>
-
-    <ItemGroup>
-        <!-- Test framework setup -->
-        <PackageReference Include="NUnit" Version="4.2.2"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.6.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
-        <PackageReference Include="JunitXml.TestLogger" Version="4.1.0"/>
-
-        <!-- Extra libraries  -->
-        <PackageReference Include="Moq" Version="4.20.72"/>
-    </ItemGroup>
 
     <ItemGroup>
         <!-- project dependencies -->

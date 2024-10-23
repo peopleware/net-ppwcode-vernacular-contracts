@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 	ProjectSection(SolutionItems) = preProject
 		src\common.props = src\common.props
 		src\Directory.Build.props = src\Directory.Build.props
+		src\common-tests.props = src\common-tests.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPWCode.Vernacular.Contracts.I", "src\PPWCode.Vernacular.Contracts.I\PPWCode.Vernacular.Contracts.I.csproj", "{826C29DB-43F8-49DB-BD84-44B315AC2EA6}"
