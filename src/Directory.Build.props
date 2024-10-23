@@ -3,30 +3,13 @@
     <!-- https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
 
     <!-- version number -->
+    <Import Project="version.props" />
+
     <PropertyGroup>
-        <!-- buildserver must overrule these -->
-        <TeamCityBuild>false</TeamCityBuild>
-    </PropertyGroup>
-
-    <!-- version numbers local build: always 0.0.0 -->
-    <PropertyGroup Condition=" '$(TeamCityBuild)' == 'false' ">
-        <!-- GAC version -->
-        <AssemblyVersion>0.0.0</AssemblyVersion>
-        <Version>0.0.0</Version>
-        <FileVersion>0.0.0.0</FileVersion>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    </PropertyGroup>
-
-    <!-- version numbers official build -->
-    <PropertyGroup Condition=" '$(TeamCityBuild)' == 'true' ">
-        <!-- update this one to indicate new releases! -->
-        <MajorVersion>1</MajorVersion> <!-- keep in sync with roman version number! -->
-        <MinorVersion>1</MinorVersion> <!-- bump for backwards compatible changes -->
-        <BugfixVersion>0</BugfixVersion> <!-- bump for bugfix releases -->
-        <!-- GAC version -->
-        <AssemblyVersion>$(MajorVersion).0.0</AssemblyVersion>
-        <Version>$(MajorVersion).$(MinorVersion).$(BugfixVersion)</Version>
-        <FileVersion>$(MajorVersion).$(MinorVersion).$(BugfixVersion)</FileVersion>
+        <!-- version numbers -->
+        <AssemblyVersion>$(GacVersion)</AssemblyVersion>
+        <Version>$(PackageVersion)</Version>
+        <FileVersion>$(InformationalVersion)</FileVersion>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
@@ -39,10 +22,10 @@
         <Copyright>Copyright © PeopleWare 2022-2024</Copyright>
 
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://bitbucket.org/ppwcode/dotnet-vernacular-contracts.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/peopleware/net-ppwcode-vernacular-contracts.git</RepositoryUrl>
 
         <PackageTags>ppwcode vernacular contracts dotnetcore netcore</PackageTags>
-        <PackageProjectUrl>https://github.com/peopleware/net-ppwcode-vernacular-exceptions</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/peopleware/net-ppwcode-vernacular-contracts</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageIcon>ppwcode_logo.jpg</PackageIcon>

@@ -21,9 +21,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 		src\common.props = src\common.props
 		src\Directory.Build.props = src\Directory.Build.props
 		src\common-tests.props = src\common-tests.props
+		src\version.props = src\version.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPWCode.Vernacular.Contracts.I", "src\PPWCode.Vernacular.Contracts.I\PPWCode.Vernacular.Contracts.I.csproj", "{826C29DB-43F8-49DB-BD84-44B315AC2EA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{25E2E983-41B9-4A85-89EB-35E1802A6583}"
+	ProjectSection(SolutionItems) = preProject
+		assets\ppwcode_logo.jpg = assets\ppwcode_logo.jpg
+		LICENSE = LICENSE
+		NOTICE = NOTICE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
