@@ -72,7 +72,8 @@
 
         <!-- use package lock files -->
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <RestoreLockedMode>true</RestoreLockedMode>
+        <!-- disabled because causes problems with builds on different OSes -->
+        <!-- <RestoreLockedMode>true</RestoreLockedMode> -->
     </PropertyGroup>
 
     <!-- set default for configuration -->
