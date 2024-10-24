@@ -11,4 +11,14 @@
         <PackageReference Include="JetBrains.Annotations" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net462" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net47" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net471" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net481" />
+    </ItemGroup>
+
 </Project>

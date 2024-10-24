@@ -72,8 +72,12 @@
 
         <!-- use package lock files -->
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <!-- disabled because causes problems with builds on different OSes -->
-        <!-- <RestoreLockedMode>true</RestoreLockedMode> -->
+        <RestoreLockedMode>true</RestoreLockedMode>
+
+        <!-- to avoid automatically getting the reference assemblies -->
+        <!-- note: the reference assemblies are added explicitly -->
+        <!-- to avoid differences in the package lock files across OSes -->
+        <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
     </PropertyGroup>
 
     <!-- set default for configuration -->
