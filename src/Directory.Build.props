@@ -100,7 +100,7 @@
         <WarningsAsErrors/>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-        <LangVersion>10.0</LangVersion>
+        <LangVersion>12.0</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
