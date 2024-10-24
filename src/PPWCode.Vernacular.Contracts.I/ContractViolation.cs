@@ -55,15 +55,15 @@ public class ContractViolation : ProgrammingError
     }
 #endif
 
-    public string FilePath
+    public string? FilePath
     {
-        get => (string)Data[FilePathKey];
+        get => (string?)Data[FilePathKey];
         private set => Data[FilePathKey] = value;
     }
 
-    public string MemberName
+    public string? MemberName
     {
-        get => (string)Data[MemberNameKey];
+        get => (string?)Data[MemberNameKey];
         private set => Data[MemberNameKey] = value;
     }
 

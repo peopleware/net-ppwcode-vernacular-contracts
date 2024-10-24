@@ -61,9 +61,9 @@ public class ArgumentOutOfRangeViolation : PreConditionViolation
     }
 #endif
 
-    public string ParameterName
+    public string? ParameterName
     {
-        get => (string)Data[ParameterNameKey];
+        get => (string?)Data[ParameterNameKey];
         private set => Data[ParameterNameKey] = value;
     }
 }
