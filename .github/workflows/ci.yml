@@ -47,7 +47,8 @@ jobs:
           --verbosity normal \
           --logger "trx;LogFileName=test-results.trx" \
           --collect:"XPlat Code Coverage" \
-          --results-directory ./coverage
+          --results-directory ./coverage \
+          -p:ContinuousIntegrationBuild=true
 
     - name: Publish Test Results
       uses: dorny/test-reporter@v1
