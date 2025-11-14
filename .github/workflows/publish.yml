@@ -17,6 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Mono
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mono-complete
+
     - name: Extract version from tag
       id: get_version
       run: |

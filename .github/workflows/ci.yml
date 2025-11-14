@@ -16,6 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Mono
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mono-complete
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
