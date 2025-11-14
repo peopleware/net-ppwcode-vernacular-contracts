@@ -1,0 +1,123 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - '[IVX]*[IVX]/[0-9]+.[0-9]+.[0-9]+'
+      - '[IVX]*[IVX]/[0-9]+.[0-9]+.[0-9]+-*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        # Extract full tag (e.g., I/1.2.3 or II/2.0.0-beta1)
+        FULL_TAG=${GITHUB_REF#refs/tags/}
+
+        # Validate tag format with roman numeral prefix
+        if [[ ! $FULL_TAG =~ ^[IVX]+/[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+          echo "ERROR: Tag '$FULL_TAG' does not match format {ROMAN}/{VERSION}"
+          echo "Expected format: I/1.2.3 or II/2.0.0-beta1"
+          exit 1
+        fi
+
+        # Extract version part (strip roman numeral prefix)
+        VERSION=${FULL_TAG#*/}
+
+        # Extract commit hash (short)
+        COMMIT_HASH=$(git rev-parse --short HEAD)
+
+        # Extract major.minor.patch for AssemblyVersion
+        if [[ $VERSION =~ ^([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+          ASSEMBLY_VERSION="${BASH_REMATCH[1]}.0"
+        fi
+
+        # FileVersion = semantic version + commit hash
+        FILE_VERSION="${VERSION}+${COMMIT_HASH}"
+
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "assembly_version=$ASSEMBLY_VERSION" >> $GITHUB_OUTPUT
+        echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
+        echo "Using tag: $FULL_TAG"
+        echo "Version: $VERSION"
+        echo "AssemblyVersion: $ASSEMBLY_VERSION"
+        echo "FileVersion: $FILE_VERSION"
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+          10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore PPWCode.Vernacular.Contracts.sln
+
+    - name: Build
+      run: |
+        dotnet build PPWCode.Vernacular.Contracts.sln \
+          --configuration Release \
+          --no-restore \
+          -p:ContinuousIntegrationBuild=true \
+          -p:Version=${{ steps.get_version.outputs.version }} \
+          -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
+          -p:FileVersion=${{ steps.get_version.outputs.file_version }}
+
+    - name: Test
+      run: |
+        dotnet test PPWCode.Vernacular.Contracts.sln \
+          --configuration Release \
+          --no-build \
+          --verbosity normal \
+          --logger "trx;LogFileName=test-results.trx" \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./coverage
+
+    - name: Publish Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results
+        path: '**/test-results.trx'
+        reporter: dotnet-trx
+        fail-on-error: true
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      if: always()
+      with:
+        filename: 'coverage/**/coverage.cobertura.xml'
+        badge: true
+        fail_below_min: false
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+
+    - name: Pack
+      run: |
+        dotnet pack src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj \
+          --configuration Release \
+          --no-build \
+          --output ./artifacts \
+          -p:PackageVersion=${{ steps.get_version.outputs.version }}
+
+    - name: Publish to NuGet
+      run: |
+        dotnet nuget push ./artifacts/*.nupkg \
+          --source https://api.nuget.org/v3/index.json \
+          --api-key az
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
