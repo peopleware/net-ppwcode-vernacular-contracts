@@ -2,14 +2,12 @@
 
     <!-- https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build -->
 
-    <!-- version number -->
-    <Import Project="version.props" />
-
     <PropertyGroup>
-        <!-- version numbers -->
-        <AssemblyVersion>$(GacVersion)</AssemblyVersion>
-        <Version>$(PackageVersion)</Version>
-        <FileVersion>$(InformationalVersion)</FileVersion>
+        <!-- Default version for local development builds -->
+        <!-- Production versions are set from git tags in CI/CD pipelines -->
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+        <Version>0.0.0-devbuild</Version>
+        <FileVersion>0.0.0.0</FileVersion>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
@@ -19,7 +17,7 @@
         <Product>PPWCode.Vernacular.Contracts</Product>
         <Authors>rvdginste</Authors>
         <Company>PeopleWare</Company>
-        <Copyright>Copyright © PeopleWare 2022-2024</Copyright>
+        <Copyright>Copyright © PeopleWare 2022-2025</Copyright>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/peopleware/net-ppwcode-vernacular-contracts.git</RepositoryUrl>
@@ -45,8 +43,8 @@
         <EmbedAllSources>true</EmbedAllSources>
         <!-- publish the repository URL in the nuget package -->
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <!-- continuous integration build -->
-        <ContinuousIntegrationBuild>$(TeamCityBuild)</ContinuousIntegrationBuild>
+        <!-- continuous integration build (false for local builds, set to true in CI/CD) -->
+        <ContinuousIntegrationBuild Condition="'$(ContinuousIntegrationBuild)' == ''">false</ContinuousIntegrationBuild>
         <!-- include the pdb in the nuget package -->
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     </PropertyGroup>
@@ -61,7 +59,7 @@
 
     <PropertyGroup>
         <!-- Target frameworks -->
-        <TargetFrameworks>netstandard2.0;net6.0;net8.0;net462;net47;net471;net472;net48;net481</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0;net8.0;net10.0;net462;net47;net471;net472;net48;net481</TargetFrameworks>
 
         <!-- Configurations -->
         <Configurations>Debug;Release</Configurations>

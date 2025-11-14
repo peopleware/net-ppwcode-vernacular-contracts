@@ -18,7 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 		src\common.props = src\common.props
 		src\Directory.Build.props = src\Directory.Build.props
 		src\common-tests.props = src\common-tests.props
-		src\version.props = src\version.props
 		src\Directory.Packages.props = src\Directory.Packages.props
 	EndProjectSection
 EndProject
