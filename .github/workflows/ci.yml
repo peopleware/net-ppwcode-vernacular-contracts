@@ -34,12 +34,15 @@ jobs:
           10.0.x
 
     - name: Restore dependencies
+      shell: bash
       run: dotnet restore PPWCode.Vernacular.Contracts.sln -p:Configuration=Release
 
     - name: Build
+      shell: bash
       run: dotnet build PPWCode.Vernacular.Contracts.sln --configuration Release --no-restore -p:ContinuousIntegrationBuild=true
 
     - name: Test
+      shell: bash
       run: |
         dotnet test PPWCode.Vernacular.Contracts.sln \
           --configuration Release \
@@ -61,6 +64,7 @@ jobs:
 
     - name: Generate Coverage Report
       if: always()
+      shell: bash
       run: |
         dotnet tool install -g dotnet-reportgenerator-globaltool
         reportgenerator \
