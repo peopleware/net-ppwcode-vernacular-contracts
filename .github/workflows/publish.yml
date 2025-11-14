@@ -7,20 +7,129 @@ on:
       - '[IVX]*[IVX]/[0-9]+.[0-9]+.[0-9]+-*'
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
     permissions:
-      id-token: write
-      contents: read
       checks: write
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            name-suffix: 'Linux'
+          - os: macos-latest
+            name-suffix: 'macOS'
+          - os: windows-latest
+            name-suffix: 'Windows'
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup Mono
+    - name: Extract version from tag
+      id: get_version
+      shell: bash
       run: |
-        sudo apt-get update
-        sudo apt-get install -y mono-complete
+        # Extract full tag (e.g., I/1.2.3 or II/2.0.0-beta1)
+        FULL_TAG=${GITHUB_REF#refs/tags/}
+
+        # Validate tag format with roman numeral prefix
+        if [[ ! $FULL_TAG =~ ^[IVX]+/[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+          echo "ERROR: Tag '$FULL_TAG' does not match format {ROMAN}/{VERSION}"
+          echo "Expected format: I/1.2.3 or II/2.0.0-beta1"
+          exit 1
+        fi
+
+        # Extract version part (strip roman numeral prefix)
+        VERSION=${FULL_TAG#*/}
+
+        # Extract commit hash (short)
+        COMMIT_HASH=$(git rev-parse --short HEAD)
+
+        # Extract major.minor.patch for AssemblyVersion
+        if [[ $VERSION =~ ^([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+          ASSEMBLY_VERSION="${BASH_REMATCH[1]}.0"
+        fi
+
+        # FileVersion = semantic version + commit hash
+        FILE_VERSION="${VERSION}+${COMMIT_HASH}"
+
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "assembly_version=$ASSEMBLY_VERSION" >> $GITHUB_OUTPUT
+        echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore PPWCode.Vernacular.Contracts.sln
+
+    - name: Build
+      run: |
+        dotnet build PPWCode.Vernacular.Contracts.sln \
+          --configuration Release \
+          --no-restore \
+          -p:ContinuousIntegrationBuild=true \
+          -p:Version=${{ steps.get_version.outputs.version }} \
+          -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
+          -p:FileVersion=${{ steps.get_version.outputs.file_version }}
+
+    - name: Test
+      run: |
+        dotnet test PPWCode.Vernacular.Contracts.sln \
+          --configuration Release \
+          --no-build \
+          --verbosity normal \
+          --logger "trx;LogFileName=test-results.trx" \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./coverage
+
+    - name: Publish Test Results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Test Results (${{ matrix.name-suffix }})
+        path: '**/test-results.trx'
+        reporter: dotnet-trx
+        fail-on-error: true
+
+    - name: Generate Coverage Report
+      if: always()
+      run: |
+        dotnet tool install -g dotnet-reportgenerator-globaltool
+        reportgenerator \
+          -reports:"coverage/**/coverage.cobertura.xml" \
+          -targetdir:"coveragereport" \
+          -reporttypes:"MarkdownSummaryGithub;Cobertura"
+
+    - name: Add Coverage to Job Summary
+      if: always()
+      shell: bash
+      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Publish Coverage Report
+      uses: 5monkeys/cobertura-action@master
+      if: always()
+      with:
+        path: 'coveragereport/Cobertura.xml'
+        minimum_coverage: 0
+        fail_below_threshold: false
+        show_line: false
+        show_branch: false
+        report_name: Code Coverage (${{ matrix.name-suffix }})
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
 
     - name: Extract version from tag
       id: get_version
@@ -66,49 +175,17 @@ jobs:
           10.0.x
 
     - name: Restore dependencies
-      run: dotnet restore PPWCode.Vernacular.Contracts.sln
+      run: dotnet restore src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj
 
     - name: Build
       run: |
-        dotnet build PPWCode.Vernacular.Contracts.sln \
+        dotnet build src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj \
           --configuration Release \
           --no-restore \
           -p:ContinuousIntegrationBuild=true \
           -p:Version=${{ steps.get_version.outputs.version }} \
           -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
           -p:FileVersion=${{ steps.get_version.outputs.file_version }}
-
-    - name: Test
-      run: |
-        dotnet test PPWCode.Vernacular.Contracts.sln \
-          --configuration Release \
-          --no-build \
-          --verbosity normal \
-          --logger "trx;LogFileName=test-results.trx" \
-          --collect:"XPlat Code Coverage" \
-          --results-directory ./coverage
-
-    - name: Publish Test Results
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Test Results
-        path: '**/test-results.trx'
-        reporter: dotnet-trx
-        fail-on-error: true
-
-    - name: Code Coverage Report
-      uses: 5monkeys/cobertura-action@master
-      if: always()
-      with:
-        path: 'coverage/**/coverage.cobertura.xml'
-        minimum_coverage: 0
-        fail_below_threshold: false
-        show_line: true
-        show_branch: true
-        show_missing: true
-        link_missing_lines: true
-        report_name: Code Coverage
 
     - name: Pack
       run: |

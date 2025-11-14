@@ -8,24 +8,28 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     permissions:
       checks: write
       pull-requests: write
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            name-suffix: 'Linux'
+          - os: macos-latest
+            name-suffix: 'macOS'
+          - os: windows-latest
+            name-suffix: 'Windows'
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Setup Mono
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y mono-complete
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
-          6.0.x
           8.0.x
           10.0.x
 
@@ -49,20 +53,32 @@ jobs:
       uses: dorny/test-reporter@v1
       if: always()
       with:
-        name: Test Results
+        name: Test Results (${{ matrix.name-suffix }})
         path: '**/test-results.trx'
         reporter: dotnet-trx
         fail-on-error: true
 
-    - name: Code Coverage Report
+    - name: Generate Coverage Report
+      if: always()
+      run: |
+        dotnet tool install -g dotnet-reportgenerator-globaltool
+        reportgenerator \
+          -reports:"coverage/**/coverage.cobertura.xml" \
+          -targetdir:"coveragereport" \
+          -reporttypes:"MarkdownSummaryGithub;Cobertura"
+
+    - name: Add Coverage to Job Summary
+      if: always()
+      shell: bash
+      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Publish Coverage Report
       uses: 5monkeys/cobertura-action@master
       if: always()
       with:
-        path: 'coverage/**/coverage.cobertura.xml'
+        path: 'coveragereport/Cobertura.xml'
         minimum_coverage: 0
         fail_below_threshold: false
-        show_line: true
-        show_branch: true
-        show_missing: true
-        link_missing_lines: true
-        report_name: Code Coverage
+        show_line: false
+        show_branch: false
+        report_name: Code Coverage (${{ matrix.name-suffix }})
