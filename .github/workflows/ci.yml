@@ -25,7 +25,7 @@ jobs:
           10.0.x
 
     - name: Restore dependencies
-      run: dotnet restore PPWCode.Vernacular.Contracts.sln
+      run: dotnet restore PPWCode.Vernacular.Contracts.sln -p:Configuration=Release
 
     - name: Build
       run: dotnet build PPWCode.Vernacular.Contracts.sln --configuration Release --no-restore -p:ContinuousIntegrationBuild=true
