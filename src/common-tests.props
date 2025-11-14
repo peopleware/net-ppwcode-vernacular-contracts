@@ -16,6 +16,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="JunitXml.TestLogger" />
 
+        <!-- Code coverage -->
+        <PackageReference Include="coverlet.collector" />
+
         <!-- Extra libraries  -->
         <PackageReference Include="Moq" />
     </ItemGroup>

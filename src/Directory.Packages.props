@@ -30,6 +30,7 @@
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
         <PackageVersion Include="JunitXml.TestLogger" Version="7.0.2" />
         <PackageVersion Include="Moq" Version="4.20.72" />
+        <PackageVersion Include="coverlet.collector" Version="6.0.4" />
 
         <!-- .net full framework reference assemblies -->
         <!-- these are explicitly added to avoid issues with cross-platform package lock files -->
