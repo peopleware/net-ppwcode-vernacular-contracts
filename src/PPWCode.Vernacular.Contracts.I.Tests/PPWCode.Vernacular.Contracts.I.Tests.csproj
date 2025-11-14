@@ -8,16 +8,12 @@
 
         <!-- Package -->
         <IsPackable>false</IsPackable>
-    </PropertyGroup>
 
-    <!-- target frameworks based on OS -->
-    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-        <!-- Windows: test all frameworks -->
+        <!-- Target frameworks -->
         <TargetFrameworks>net8.0;net10.0;net462;net47;net471;net472;net48;net481</TargetFrameworks>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-        <!-- Linux/macOS: test only .NET Core -->
+    <PropertyGroup Condition="'$(OS)' != 'Windows_NT' And $(ContinuousIntegrationBuild) == 'true' ">
         <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     </PropertyGroup>
 
