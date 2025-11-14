@@ -70,12 +70,7 @@ jobs:
         reportgenerator \
           -reports:"coverage/**/coverage.cobertura.xml" \
           -targetdir:"coveragereport" \
-          -reporttypes:"MarkdownSummaryGithub;Cobertura"
-
-    - name: Add Coverage to Job Summary
-      if: always()
-      shell: bash
-      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+          -reporttypes:"Cobertura"
 
     - name: Publish Coverage Report
       uses: 5monkeys/cobertura-action@master
