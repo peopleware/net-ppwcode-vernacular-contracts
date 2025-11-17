@@ -65,6 +65,9 @@
         <Configurations>Debug;Release</Configurations>
         <Platforms>AnyCPU</Platforms>
 
+        <!-- Generate documentation files -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
         <!-- content -->
         <EnableDefaultContentItems>false</EnableDefaultContentItems>
 
@@ -116,14 +119,6 @@
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <DefineConstants>TRACE;CONTRACTS_PRE;CONTRACTS_POST;CONTRACTS_INVARIANT;CONTRACTS_ASSERT;JETBRAINS_ANNOTATIONS</DefineConstants>
-    </PropertyGroup>
-
-    <!-- build paths -->
-    <PropertyGroup>
-        <OutputPath>..\..\scratch\bin\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</OutputPath>
-        <IntermediateOutputPath>..\..\scratch\obj\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</IntermediateOutputPath>
-        <BaseIntermediateOutputPath>..\..\scratch\bob\$(MSBuildProjectName)-$(Configuration)-$(Platform)\</BaseIntermediateOutputPath>
-        <DocumentationFile>..\..\scratch\bin\$(MSBuildProjectName)-$(Configuration)-$(Platform)\$(MSBuildProjectName).xml</DocumentationFile>
     </PropertyGroup>
 
 </Project>
