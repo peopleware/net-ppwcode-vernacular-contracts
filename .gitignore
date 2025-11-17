@@ -15,8 +15,9 @@ _ReSharper*/
 # NuGet Packages
 *.nupkg
 
-# scratch directory
-/scratch
+# output folders directory
+/src/*/obj
+/src/*/bin
 
 # test reports
 /test-reports
