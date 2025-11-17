@@ -163,7 +163,7 @@ jobs:
           -p:ContinuousIntegrationBuild=true \
           -p:Version=${{ steps.get_version.outputs.version }} \
           -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
-          -p:FileVersion=${{ steps.get_version.outputs.informational_version }}
+          -p:InformationalVersion=${{ steps.get_version.outputs.informational_version }}
 
     - name: Pack
       shell: bash
