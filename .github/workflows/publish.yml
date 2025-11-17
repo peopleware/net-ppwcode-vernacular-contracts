@@ -7,7 +7,7 @@ on:
       - '[IVX]*[IVX]/[0-9]+.[0-9]+.[0-9]+-*'
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ${{ matrix.os }}
     permissions:
       checks: write
@@ -23,106 +23,77 @@ jobs:
             name-suffix: 'Windows'
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Extract version from tag
-      id: get_version
-      shell: bash
-      run: |
-        # Extract full tag (e.g., I/1.2.3 or II/2.0.0-beta1)
-        FULL_TAG=${GITHUB_REF#refs/tags/}
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
 
-        # Validate tag format with roman numeral prefix
-        if [[ ! $FULL_TAG =~ ^[IVX]+/[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
-          echo "ERROR: Tag '$FULL_TAG' does not match format {ROMAN}/{VERSION}"
-          echo "Expected format: I/1.2.3 or II/2.0.0-beta1"
-          exit 1
-        fi
+      - name: Restore dependencies
+        shell: bash
+        # do not add ContinuousIntegrationBuild here
+        # since it will complain about the package lock file
+        # ContinuousIntegrationBuild=true excludes full-framework
+        # builds on linux and macOS
+        run: |
+          dotnet restore PPWCode.Vernacular.Contracts.sln \
+            -p:Configuration=Release
 
-        # Extract version part (strip roman numeral prefix)
-        VERSION=${FULL_TAG#*/}
+      - name: Build
+        shell: bash
+        run: |
+          dotnet build PPWCode.Vernacular.Contracts.sln \
+            --configuration Release \
+            --no-restore \
+            -p:ContinuousIntegrationBuild=true
 
-        # Extract commit hash (short)
-        COMMIT_HASH=$(git rev-parse --short HEAD)
+      - name: Test
+        shell: bash
+        run: |
+          dotnet test PPWCode.Vernacular.Contracts.sln \
+            --configuration Release \
+            --no-build \
+            --verbosity normal \
+            --logger "trx;LogFileName=test-results.trx" \
+            --collect:"XPlat Code Coverage" \
+            --results-directory ./coverage \
+            -p:ContinuousIntegrationBuild=true
 
-        # Extract major.minor.patch for AssemblyVersion
-        if [[ $VERSION =~ ^([0-9]+\.[0-9]+\.[0-9]+) ]]; then
-          ASSEMBLY_VERSION="${BASH_REMATCH[1]}.0"
-        fi
+      - name: Publish Test Results
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results (${{ matrix.name-suffix }})
+          path: '**/test-results.trx'
+          reporter: dotnet-trx
+          fail-on-error: true
 
-        # FileVersion = semantic version + commit hash
-        FILE_VERSION="${VERSION}+${COMMIT_HASH}"
+      - name: Generate Coverage Report
+        if: always()
+        shell: bash
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator \
+            -reports:"coverage/**/coverage.cobertura.xml" \
+            -targetdir:"coveragereport" \
+            -reporttypes:"Cobertura"
 
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "assembly_version=$ASSEMBLY_VERSION" >> $GITHUB_OUTPUT
-        echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: |
-          8.0.x
-          10.0.x
-
-    - name: Restore dependencies
-      run: dotnet restore PPWCode.Vernacular.Contracts.sln
-
-    - name: Build
-      run: |
-        dotnet build PPWCode.Vernacular.Contracts.sln \
-          --configuration Release \
-          --no-restore \
-          -p:ContinuousIntegrationBuild=true \
-          -p:Version=${{ steps.get_version.outputs.version }} \
-          -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
-          -p:FileVersion=${{ steps.get_version.outputs.file_version }}
-
-    - name: Test
-      run: |
-        dotnet test PPWCode.Vernacular.Contracts.sln \
-          --configuration Release \
-          --no-build \
-          --verbosity normal \
-          --logger "trx;LogFileName=test-results.trx" \
-          --collect:"XPlat Code Coverage" \
-          --results-directory ./coverage
-
-    - name: Publish Test Results
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Test Results (${{ matrix.name-suffix }})
-        path: '**/test-results.trx'
-        reporter: dotnet-trx
-        fail-on-error: true
-
-    - name: Generate Coverage Report
-      if: always()
-      run: |
-        dotnet tool install -g dotnet-reportgenerator-globaltool
-        reportgenerator \
-          -reports:"coverage/**/coverage.cobertura.xml" \
-          -targetdir:"coveragereport" \
-          -reporttypes:"MarkdownSummaryGithub;Cobertura"
-
-    - name: Add Coverage to Job Summary
-      if: always()
-      shell: bash
-      run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
-
-    - name: Publish Coverage Report
-      uses: 5monkeys/cobertura-action@master
-      if: always()
-      with:
-        path: 'coveragereport/Cobertura.xml'
-        minimum_coverage: 0
-        fail_below_threshold: false
-        show_line: false
-        show_branch: false
-        report_name: Code Coverage (${{ matrix.name-suffix }})
+      - name: Publish Coverage Report
+        uses: 5monkeys/cobertura-action@master
+        if: always()
+        with:
+          path: 'coveragereport/Cobertura.xml'
+          minimum_coverage: 0
+          fail_below_threshold: false
+          show_line: false
+          show_branch: false
+          report_name: Code Coverage (${{ matrix.name-suffix }})
 
   publish:
-    needs: test
+    needs: build-and-test
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -170,16 +141,23 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
-          6.0.x
           8.0.x
           10.0.x
 
     - name: Restore dependencies
-      run: dotnet restore src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj
+      shell: bash
+      # do not add ContinuousIntegrationBuild here
+      # since it will complain about the package lock file
+      # ContinuousIntegrationBuild=true excludes full-framework
+      # builds on linux and macOS
+      run: |
+        dotnet restore PPWCode.Vernacular.Contracts.sln \
+          -p:Configuration=Release
 
     - name: Build
+      shell: bash
       run: |
-        dotnet build src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj \
+        dotnet build PPWCode.Vernacular.Contracts.sln \
           --configuration Release \
           --no-restore \
           -p:ContinuousIntegrationBuild=true \
@@ -188,14 +166,16 @@ jobs:
           -p:FileVersion=${{ steps.get_version.outputs.file_version }}
 
     - name: Pack
+      shell: bash
       run: |
-        dotnet pack src/PPWCode.Vernacular.Contracts.I/PPWCode.Vernacular.Contracts.I.csproj \
+        dotnet pack PPWCode.Vernacular.Contracts.sln \
           --configuration Release \
           --no-build \
           --output ./artifacts \
           -p:PackageVersion=${{ steps.get_version.outputs.version }}
 
     - name: Publish to NuGet
+      shell: bash
       run: |
         dotnet nuget push ./artifacts/*.nupkg \
           --source https://api.nuget.org/v3/index.json \
