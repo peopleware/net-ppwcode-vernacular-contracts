@@ -1,14 +1,20 @@
 # PPWCode.Vernacular.Contracts
 
-This library is part of the [ppwcode] project and encapsulates the vernacular on contracts.
+This library is part of the [ppwcode] project and encapsulates the vernacular on
+contracts.
 
 ## Getting started
 
 ### PPWCode.Vernacular.Contracts I
 
-This is version `I` of the library, which is designed to work with .NET 6.0.
+This is version `I` of the library, which is designed to work both with legacy
+.NET full framework versions and with modern .NET (Core) versions.
 
-The library is available as the [NuGet] package `PPWCode.Vernacular.Contracts.I` in the [NuGet Gallery].
+Note that support for .NET versions tracks Microsofts support for released .NET
+SDKs.
+
+The library is available as the [NuGet] package `PPWCode.Vernacular.Contracts.I`
+in the [NuGet Gallery].
 
 ## [ppwcode]
 
@@ -34,7 +40,7 @@ future we might look into using symbol servers.
 
 ## License and Copyright
 
-Copyright 2022 by [PeopleWare n.v.].
+Copyright 2022-2025 by [PeopleWare n.v.].
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

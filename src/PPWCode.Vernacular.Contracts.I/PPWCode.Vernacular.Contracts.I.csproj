@@ -5,6 +5,9 @@
     <PropertyGroup>
         <!-- Stylecop -->
         <CodeAnalysisRuleSet>..\Analyzer.ruleset</CodeAnalysisRuleSet>
+
+        <!-- Package README -->
+        <PackageReadmeFile>..\..\README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
