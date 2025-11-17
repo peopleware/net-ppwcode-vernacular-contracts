@@ -5,9 +5,9 @@
     <PropertyGroup>
         <!-- Default version for local development builds -->
         <!-- Production versions are set from git tags in CI/CD pipelines -->
-        <AssemblyVersion>0.0.0.0</AssemblyVersion>
         <Version>0.0.0-devbuild</Version>
-        <FileVersion>0.0.0.0</FileVersion>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+        <InformationalVersion>0.0.0.0</InformationalVersion>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 

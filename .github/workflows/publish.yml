@@ -126,16 +126,16 @@ jobs:
           ASSEMBLY_VERSION="${BASH_REMATCH[1]}.0"
         fi
 
-        # FileVersion = semantic version + commit hash
-        FILE_VERSION="${VERSION}+${COMMIT_HASH}"
+        # InformationalVersion = semantic version + commit hash
+        INFORMATIONAL_VERSION="${VERSION}+${COMMIT_HASH}"
 
         echo "version=$VERSION" >> $GITHUB_OUTPUT
         echo "assembly_version=$ASSEMBLY_VERSION" >> $GITHUB_OUTPUT
-        echo "file_version=$FILE_VERSION" >> $GITHUB_OUTPUT
+        echo "informational_version=$INFORMATIONAL_VERSION" >> $GITHUB_OUTPUT
         echo "Using tag: $FULL_TAG"
         echo "Version: $VERSION"
         echo "AssemblyVersion: $ASSEMBLY_VERSION"
-        echo "FileVersion: $FILE_VERSION"
+        echo "InformationalVersion: $INFORMATIONAL_VERSION"
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -163,7 +163,7 @@ jobs:
           -p:ContinuousIntegrationBuild=true \
           -p:Version=${{ steps.get_version.outputs.version }} \
           -p:AssemblyVersion=${{ steps.get_version.outputs.assembly_version }} \
-          -p:FileVersion=${{ steps.get_version.outputs.file_version }}
+          -p:FileVersion=${{ steps.get_version.outputs.informational_version }}
 
     - name: Pack
       shell: bash
