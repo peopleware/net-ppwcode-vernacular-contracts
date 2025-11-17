@@ -34,10 +34,13 @@ jobs:
 
     - name: Restore dependencies
       shell: bash
+      # do not add ContinuousIntegrationBuild here
+      # since it will complain about the package lock file
+      # ContinuousIntegrationBuild=true excludes full-framework
+      # builds on linux and macOS
       run: |
         dotnet restore PPWCode.Vernacular.Contracts.sln \
-          -p:Configuration=Release \
-          -p:ContinuousIntegrationBuild=true
+          -p:Configuration=Release
 
     - name: Build
       shell: bash
