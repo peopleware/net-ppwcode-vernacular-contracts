@@ -11,3 +11,5 @@ jobs:
     uses: peopleware/net-ppwcode-workflows/.github/workflows/publish-dotnet-and-full-framework-all-os.yml@main
     with:
       solution-file: PPWCode.Vernacular.Contracts.sln
+    secrets:
+      PPWCODE_NUGET_USER: ${{ secrets.PPWCODE_NUGET_USER }}
