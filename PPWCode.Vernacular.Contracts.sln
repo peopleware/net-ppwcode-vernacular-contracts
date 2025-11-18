@@ -29,10 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPWCode.Vernacular.Contract
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{25E2E983-41B9-4A85-89EB-35E1802A6583}"
 	ProjectSection(SolutionItems) = preProject
-		assets\ppwcode_logo.jpg = assets\ppwcode_logo.jpg
 		LICENSE = LICENSE
 		NOTICE = NOTICE
 		README.md = README.md
+		assets\ppw-logo.png = assets\ppw-logo.png
 	EndProjectSection
 EndProject
 Global
