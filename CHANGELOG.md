@@ -10,7 +10,7 @@
 ## [1.2.0](https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/1.2.0)
 
 - Add support for Microsoft nullability attributes (in .NET Core builds, .NET
-  framework builds use JetBrains.Annotations attributes)
+  Framework builds use JetBrains.Annotations attributes)
 
 ## [1.1.0](https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/1.1.0)
 
