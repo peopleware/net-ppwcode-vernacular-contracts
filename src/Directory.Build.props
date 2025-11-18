@@ -27,7 +27,7 @@
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIcon>ppw-logo.jpg</PackageIcon>
+        <PackageIcon>ppw-logo.png</PackageIcon>
 
         <PackageReleaseNotes>
             <![CDATA[
@@ -53,7 +53,7 @@
 
     <!-- include supporting files in NuGet package -->
     <ItemGroup>
-        <None Include="../../assets/ppw-logo.jpg" Pack="true" PackagePath="/" Visible="false"/>
+        <None Include="../../assets/ppw-logo.png" Pack="true" PackagePath="/" Visible="false"/>
         <None Include="../../LICENSE" Pack="true" PackagePath="/" Visible="false"/>
         <None Include="../../NOTICE" Pack="true" PackagePath="/" Visible="false"/>
         <None Include="../../README.md" Pack="true" PackagePath="/" Visible="false"/>
