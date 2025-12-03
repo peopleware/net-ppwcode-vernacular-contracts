@@ -7,13 +7,24 @@ on:
       - '[IVX]+/[0-9]+.[0-9]+.[0-9]+-*'
 
 jobs:
-  build-test-publish:
-    uses: peopleware/net-ppwcode-workflows/.github/workflows/publish-dotnet-and-full-framework-all-os.yml@main
+  nuget-login:
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
-      checks: write
+    outputs:
+      nuget-api-key: ${{ steps.nuget_login.outputs.NUGET_API_KEY }}
+    steps:
+    - name: NuGet login (OIDC for temp api key)
+      uses: NuGet/login@v1
+      id: nuget_login
+      with:
+        user: ${{ secrets.PPWCODE_NUGET_USER }}
+
+  build-test-publish:
+    needs: nuget-login
+    uses: peopleware/net-ppwcode-workflows/.github/workflows/publish-dotnet-and-full-framework-all-os.yml@main
     with:
       solution-file: PPWCode.Vernacular.Contracts.sln
     secrets:
-      PPWCODE_NUGET_USER: ${{ secrets.PPWCODE_NUGET_USER }}
+      PPWCODE_NUGET_API_KEY: ${{ needs.nuget-login.outputs.nuget-api-key }}
