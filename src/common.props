@@ -18,7 +18,7 @@
                      Or ('$(TargetFramework)' == 'net472')
                      Or ('$(TargetFramework)' == 'net48')
                      Or ('$(TargetFramework)' == 'net481') ">
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" />
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" />
     </ItemGroup>
 
 </Project>

@@ -246,7 +246,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
@@ -508,7 +507,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
@@ -770,7 +768,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
@@ -1032,7 +1029,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
@@ -1294,7 +1290,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
@@ -1556,7 +1551,6 @@
         "type": "Project",
         "dependencies": {
           "JetBrains.Annotations": "[2025.2.2, )",
-          "Microsoft.NETFramework.ReferenceAssemblies": "[1.0.3, )",
           "PPWCode.Vernacular.Exceptions.IV": "[1.2.0, )"
         }
       },
