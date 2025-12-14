@@ -37,7 +37,7 @@ jobs:
         # do not add ContinuousIntegrationBuild here
         # since it will complain about the package lock file
         # ContinuousIntegrationBuild=true excludes full-framework
-        # builds on linux and macOS
+        # builds on Linux and macOS
         run: |
           dotnet restore PPWCode.Vernacular.Contracts.sln \
             -p:Configuration=Release
@@ -149,7 +149,7 @@ jobs:
       # do not add ContinuousIntegrationBuild here
       # since it will complain about the package lock file
       # ContinuousIntegrationBuild=true excludes full-framework
-      # builds on linux and macOS
+      # builds on Linux and macOS
       run: |
         dotnet restore PPWCode.Vernacular.Contracts.sln \
           -p:Configuration=Release
