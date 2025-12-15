@@ -1,0 +1,19 @@
+= PPWCode.Vernacular.Contracts.I
+
+This library is part of the .NET PPWCode project and encapsulates the vernacular on contracts.
+
+This is a helper library to apply design-by-contract principles in .NET.  It was created to serve as a replacement for the Microsoft "Code Contracts" research project that was halted.
+
+The library contains simple helper methods to perform contract validation at run-time.  The library is annotated to help the static analyzer in the Roslyn compiler.
+
+The library supports both different versions of .NET full framework and more recent .NET SDKs.
+
+
+== .NET Full Framework
+
+The builds for the .NET full framework cannot use the new C# annotations that help the nullability analysis done by the Roslyn compiler.  For this reason, these builds have a dependency on the `JetBrains.Annotations` package.  These annotations are supported by the static analysis done by both JetBrains Rider and ReSharper.
+
+
+== .NET SDKs
+
+The builds for the .NET SDKs use the new C# annotations supported by the Roslyn compiler.  These builds do not have a dependency on the `JetBrains.Annotations` package.

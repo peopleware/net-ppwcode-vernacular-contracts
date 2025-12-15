@@ -1,0 +1,12 @@
+= Getting started
+
+== `PPWCode.Vernacular.Contracts.I`
+
+This is version `I` of the library, which is designed to work both with legacy
+.NET full framework versions and with modern .NET (Core) versions.
+
+Note that support for .NET versions tracks Microsofts support for released .NET
+SDKs.
+
+The library is available as the [NuGet] package `PPWCode.Vernacular.Contracts.I`
+in the [NuGet Gallery].
