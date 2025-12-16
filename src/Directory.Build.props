@@ -29,8 +29,9 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>ppw-logo-2.png</PackageIcon>
 
-        <PackageReleaseNotes>Check the changelog on GitHub:
-            https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/next/CHANGELOG.md
+        <PackageReleaseNotes>
+Changelog can be found in the documentation at:
+https://peopleware.github.io/net-ppwcode-docs/ppwcode-vernacular-contracts-i/changelog.html
         </PackageReleaseNotes>
 
         <!-- SourceLink support -->
