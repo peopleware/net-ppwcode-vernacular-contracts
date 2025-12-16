@@ -7,11 +7,15 @@ Note that it is best to update the changelog as new code is developed, and that
 the link to the GitHub tag is only added once we are ready to release.
 ////
 
+// some helper attributes for the release links
+:github: https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/
+:nuget: https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/
+
 == `1.3.0` (in development)
 
 === Release
-- https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/1.3.0-alpha.28[GitHub]
-- https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/1.3.0-alpha.28[NuGet]
+- link:{github}1.3.0-alpha.28[GitHub]
+- link:{nuget}1.3.0-alpha.28[NuGet]
 
 === Changes
 - Add support for .NET 9.0 & 10.0
@@ -23,8 +27,8 @@ the link to the GitHub tag is only added once we are ready to release.
 == `1.2.0`
 
 === Release
-- https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/1.2.0[GitHub]
-- https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/1.2.0[NuGet]
+- link:{github}1.2.0[GitHub]
+- link:{nuget}1.2.0[NuGet]
 
 === Changes
 - Add support for Microsoft nullability attributes (in .NET Core builds, .NET Framework builds use JetBrains.Annotations attributes)
@@ -33,8 +37,8 @@ the link to the GitHub tag is only added once we are ready to release.
 == `1.1.0`
 
 === Release
-- https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/1.1.0[GitHub]
-- https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/1.1.0[NuGet]
+- link:{github}1.1.0[GitHub]
+- link:{nuget}1.1.0[NuGet]
 
 === Changes
 - Target .net standard 2.0
@@ -43,8 +47,8 @@ the link to the GitHub tag is only added once we are ready to release.
 == `1.0.0`
 
 === Release
-- https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/1.0.0[GitHub]
-- https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/1.0.0[NuGet]
+- link:{github}1.0.0[GitHub]
+- link:{nuget}1.0.0[NuGet]
 
 === Changes
 - Initial release of the library
