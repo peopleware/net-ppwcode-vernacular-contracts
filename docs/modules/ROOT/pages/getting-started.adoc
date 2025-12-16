@@ -10,18 +10,21 @@ You can use your IDE to add it as a dependency of your project, or manually add 
 include::example$project.csproj[]
 ----
 
-After the package is added, you can use the following statements inside your code:
+After the package is added, you can use `PPWCode.Vernacular.Contracts.I` in your code.  Notably, the following statements become available:
+
 - `Contract.Requires(...)`
 - `Contract.Ensures(...)`
 - `Contract.Invariant(...)`
 - `Contract.Assert(...)`
 - `Contract.Assume(...)`
 
+
 == Define build constants
 
 The different contract statements are annotated with the `Conditional` attribute and are only compiled in your code when the corresponding build constant is defined.
 
 The following build constants are used:
+
 - `CONTRACTS_PRE` for `Contract.Requires(...)`
 - `CONTRACTS_POST` for `Contract.Ensures(...)`
 - `CONTRACTS_INVARIANT` for `Contract.Invariant(...)`
