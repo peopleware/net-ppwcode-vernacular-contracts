@@ -1,6 +1,6 @@
 = Getting started
 
-== Add `PPWCode.Vernacular.Contracts.I` dependency
+== Add Contracts NuGet package
 
 This package is available on NuGet: https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I[PPWCode.Vernacular.Contracts.I].
 
