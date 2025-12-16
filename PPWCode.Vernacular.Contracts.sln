@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "package", "package", "{25E2
 		NOTICE = NOTICE
 		README.md = README.md
 		assets\ppw-logo.png = assets\ppw-logo.png
+		assets\ppw-logo-2.png = assets\ppw-logo-2.png
 	EndProjectSection
 EndProject
 Global
