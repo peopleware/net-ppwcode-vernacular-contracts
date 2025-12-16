@@ -1,19 +1,28 @@
-= PPWCode.Vernacular.Contracts.I
+= About
 
-This library is part of the .NET PPWCode project and encapsulates the vernacular on contracts.
+The library `PPWCode.Vernacular.Contracts.I` is part of the .NET PPWCode project and encapsulates the _vernacular_ on contracts.
 
-This is a helper library to apply design-by-contract principles in .NET.  It was created to serve as a replacement for the Microsoft "Code Contracts" research project that was halted.
+`PPWCode.Vernacular.Contracts.I` is a helper library to apply design-by-contract principles in .NET.  It was created to facilitate migrating away from https://www.microsoft.com/en-us/research/project/code-contracts[Microsoft Code Contracts], a research project that was halted.
 
-The library contains simple helper methods to perform contract validation at run-time.  The library is annotated to help the static analyzer in the Roslyn compiler.
+The library contains simple helper methods to perform contract validation at run-time.  The library is annotated to help with static analysis of the C# code.
 
 The library supports both different versions of .NET full framework and more recent .NET SDKs.
 
 
-== .NET Full Framework
+== Microsoft Code Contracts
+
+https://www.microsoft.com/en-us/research/project/code-contracts[Microsoft Code Contracts] was an interesting Microsoft research project on Design-By-Contract for C# code.  The project focused both on static analysis of the C# code, using `Contract` statements for pre-conditions, post-conditions and invariants with an offline analyzer tool, and on run-time validation using an IL rewriter tool.
+
+From what we understand, the researchers working on this project left Microsoft, and the project was halted, and the code was made open source.  The code is available at https://github.com/Microsoft/CodeContracts[GitHub].  There was very little community input, and in the end the project was archived in 2023.
+
+Several of the projects that PeopleWare worked on took a dependency on Microsoft Code Contracts because it was a useful and powerful tool to increase code quality.  However, the tool was never really compatible with the Roslyn compiler after Visual Studio 2015 and with async code.  We needed an upgrade path for the code bases that relied on Code Contracts.  `PPWCode.Vernacular.Contracts.I` was born in this context.
+
+
+== Support for .NET Full Framework
 
 The builds for the .NET full framework cannot use the new C# annotations that help the nullability analysis done by the Roslyn compiler.  For this reason, these builds have a dependency on the `JetBrains.Annotations` package.  These annotations are supported by the static analysis done by both JetBrains Rider and ReSharper.
 
 
-== .NET SDKs
+== Support for .NET SDKs
 
 The builds for the .NET SDKs use the new C# annotations supported by the Roslyn compiler.  These builds do not have a dependency on the `JetBrains.Annotations` package.
