@@ -1,12 +1,40 @@
 = Getting started
 
-== `PPWCode.Vernacular.Contracts.I`
+== Add `PPWCode.Vernacular.Contracts.I` dependency
 
-This is version `I` of the library, which is designed to work both with legacy
-.NET full framework versions and with modern .NET (Core) versions.
+This package is available on NuGet: https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I[PPWCode.Vernacular.Contracts.I].
 
-Note that support for .NET versions tracks Microsofts support for released .NET
-SDKs.
+You can use your IDE to add it as a dependency of your project, or manually add it in the `.csproj` file.  This might look like the following:
+[source,xml]
+----
+include::example$project.csproj[]
+----
 
-The library is available as the [NuGet] package `PPWCode.Vernacular.Contracts.I`
-in the [NuGet Gallery].
+After the package is added, you can use the following statements inside your code:
+- `Contract.Requires(...)`
+- `Contract.Ensures(...)`
+- `Contract.Invariant(...)`
+- `Contract.Assert(...)`
+- `Contract.Assume(...)`
+
+== Define build constants
+
+The different contract statements are annotated with the `Conditional` attribute and are only compiled in your code when the corresponding build constant is defined.
+
+The following build constants are used:
+- `CONTRACTS_PRE` for `Contract.Requires(...)`
+- `CONTRACTS_POST` for `Contract.Ensures(...)`
+- `CONTRACTS_INVARIANT` for `Contract.Invariant(...)`
+- `CONTRACTS_ASSERT` for `Contract.Assert(...)` and `Contract.Assume(...)`
+
+It is important that you enable these for your own code that uses `PPWCode.Vernacular.Contracts.I`.  When they are defined, the run-time validation of the contract statements is active.  When they are not defined, the built code will not include the run-time validation.
+
+The build constants are used to provide some flexibility for the user.  For example, it would be possible to define the constants for `debug` builds and omit them for `release` builds.  This means that `debug` builds would include the run-time validation and `release` builds would not.  Performance could be a reason to disable the run-time validation in `release` builds.
+
+The constants must be defined for each project that uses the library (in each `.csproj` file).  Alternatively, the constants could be defined in a `Directory.Build.props` which would be used by multiple projects.
+
+In both cases, the configuration would look like the following:
+[source,xml]
+----
+include::example$Directory.Build.props[]
+----
