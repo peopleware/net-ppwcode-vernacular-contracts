@@ -1,5 +1,5 @@
 name: ppwcode-vernacular-contracts-i
-version: '1.x'
+version: ~
 title: PPWCode.Vernacular.Contracts.I
 nav:
   - modules/ROOT/nav.adoc
