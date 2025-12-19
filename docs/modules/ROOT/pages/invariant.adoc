@@ -1,3 +1,56 @@
 = Contract invariant
 
-TBD
+== Invariant
+
+An invariant can be expressed using the `Invariant` statement.  There are several types of invariants, and here we make the distinction between loop invariants and object invariants.  Loop invariants express conditions that are guaranteed for every iteration through the loop.  Object invariants are conditions that are guaranteed to be true before and after method calls on the object.
+
+For loop invariants, one could add all `Invariant` statements at the beginning of the loop.  For object invariants, one would typically create a method `CheckInvariants` on the object that contains all `Invariant` statements for this object.  This method must then be called at the end of every public method on the object.
+
+Note that an invariant is a contract between the creator of the object and the user of the object.  The creator of the object promises that certain conditions are met after every public method call on the object.
+
+== Invariant specification
+
+The following example object illustrates how the `Invariant` method can be used.
+
+The `Chest` class models a chest that can be opened and that can be locked.  There is a dependency between the _open_ and the _locked_ state: a chest cannot be both open and locked.  This is an invariant modeled using the `Invariant` statement.
+
+[source,csharp]
+----
+include::example$Chest.cs[]
+----
+<1> The `CheckInvariants` method contains all invariants for the `Chest` class.
+<2> Invariant: the chest cannot be both open and locked at the same time.
+<3> Every public method validates the invariants at the end of the method body.
+
+When the implementation of the object is correct, the invariants will always be met.  The above implementation is correct, and as such, the invariants will never fail.
+
+To illustrate how invariants can help find bugs, we introduce a faulty implementation in the next example, the `FaultyChest` class.
+
+[source,csharp]
+----
+include::example$FaultyChest.cs[]
+----
+<1> The `CheckInvariants` method contains all invariants for the `Chest` class.
+<2> Invariant: the chest cannot be both open and locked at the same time.
+<3> Every public method validates the invariants at the end of the method body.
+
+== Invariant validation
+
+The following example shows unit test code that illustrates how the code behaves when an invariant is violated, and the build constant `CONTRACTS_INVARIANT` is defined.
+
+[source,csharp]
+----
+include::example$ContractInvariant.cs[]
+----
+<.> Bugfree implementation: the chest protects the dependency between the states _open_ and _locked_ by throwing a `SemanticException` when an action is not possible.  A `SemanticException` is a business exception, and something that can happen and that the implementation has to deal with.  The `Exec` method ignores the `SemanticException` because the goal of the test is to validate that the implementation is correct and never puts the chest into an inconsistent state.
+<.> Buggy implementation: the chest does not protect the dependency between the states _open_ and _locked_, and it is possible to put the chest into an inconsistent state.  At that point, the invariant is violated.
+
+Whenever an invariant is violated, the `Invariant` method will throw an exception of type `InvariantViolation`.  This exception derives from the general `ContractViolation` exception, which in turn derives from `ProgrammingError`.
+
+`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for invariant violations: an invariant is a contract between the creator of the object (for an object invariant) and the caller of methods on that object.  When such a contract is not respected, the code must be fixed.  In the case of an invariant violation, the creator of the object did not respect the contract.
+
+With this in mind, one should never write code to catch an `InvariantViolation`.  Whenever a `InvariantViolation` is thrown, there is a bug in the code and that bug must be fixed.
+
+IMPORTANT: *_Never write code that catches a `InvariantViolation`!_*
+
+Note that the exception message in the thrown `InvariantViolation` contains the location in the source code of the invariant that was violated.
