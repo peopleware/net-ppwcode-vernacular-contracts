@@ -21,7 +21,7 @@ public class ContractRequires : BaseTest
     public void TestRequires_ValidInput() // <.>
     {
         string s = "Hello";
-        string repeated = s.Repeat(2);
+        string repeated = s.RepeatWithRequires(2);
         Assert.That(repeated, Is.EqualTo("HelloHello"));
     }
 
@@ -30,7 +30,7 @@ public class ContractRequires : BaseTest
     {
         string s = null;
         Assert.Throws<PreConditionViolation>(
-            () => s.Repeat(2),
+            () => s.RepeatWithRequires(2),
             "Precondition 'source != null' should throw");
     }
 
@@ -39,7 +39,7 @@ public class ContractRequires : BaseTest
     {
         string s = "Hello";
         Assert.Throws<PreConditionViolation>(
-            () => s.Repeat(-1),
+            () => s.RepeatWithRequires(-1),
             "Precondition 'nr >= 0' should throw");
     }
 }

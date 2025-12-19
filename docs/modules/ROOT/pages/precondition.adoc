@@ -1,5 +1,4 @@
 = Contract precondition
-:icons: font
 
 == Requires
 
@@ -36,7 +35,7 @@ include::example$ContractRequires.cs[]
 
 Whenever a precondition is violated, the `Requires` method will throw an exception of type `PreConditionViolation`.  This exception derives from the general `ContractViolation` exception, which in turn derives from `ProgrammingError`.
 
-`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for precondition violations: a precondition is a contract between the creator of the method and the caller of the method.  When such a contract is not respected, the code must be fixed.
+`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for precondition violations: a precondition is a contract between the creator of the method and the caller of the method.  When such a contract is not respected, the code must be fixed.  In the case of a precondition violation, the caller of the method did not respect the contract.
 
 With this in mind, one should never write code to catch a `PreConditionViolation`.  Whenever a `PreConditionViolation` is thrown, there is a bug in the code and that bug must be fixed.
 

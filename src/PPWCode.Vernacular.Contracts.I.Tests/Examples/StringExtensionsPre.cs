@@ -10,6 +10,7 @@
 // limitations under the License.
 
 #nullable disable
+
 namespace PPWCode.Vernacular.Contracts.I.Tests.Examples;
 
 public static class StringExtensionsPre
@@ -33,7 +34,7 @@ public static class StringExtensionsPre
     /// <remarks>
     ///     The returned value is never <c>null</c>.
     /// </remarks>
-    public static string Repeat(this string source, int nr) // <.>
+    public static string RepeatWithRequires(this string source, int nr) // <.>
     {
         Contract.Requires(source != null); // <.>
         Contract.Requires(nr >= 0);        // <.>
