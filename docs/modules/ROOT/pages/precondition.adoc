@@ -1,3 +1,45 @@
 = Contract precondition
+:icons: font
 
-TBD
+== Requires
+
+A precondition for a method can be expressed using the `Requires` statement.  Preconditions express the requirements that input parameters must satisfy to call the method.  Any method can have as many `Requires` statements as needed.  These statements must be placed as the first statements inside the method body.
+
+Note that a precondition should not be confused with input validation.  A precondition is essentially a contract between the _creator_ of a method and the _caller_ of that method.  It is the responsibility of the caller to ensure that the preconditions are met before calling the method.  If input validation is needed, the caller should do that validation.
+
+IMPORTANT: *_Never use a precondition for input validation!_*
+
+== Precondition specification
+
+The following example method illustrates how the `Requires` statement can be used.
+
+[source,csharp]
+----
+include::example$StringExtensionsPre.cs[]
+----
+<.> We added preconditions to this helper method.
+<.> Precondition: input string `source` cannot be `null`.
+<.> Precondition: input number `nr` must be positive.
+
+
+== Precondition validation
+
+The following example shows unit test code that illustrates how the code behaves when a precondition is violated, and the build constant `CONTRACTS_PRE` is defined.
+
+[source,csharp]
+----
+include::example$ContractRequires.cs[]
+----
+<.> All preconditions are satisfied, code executes successfully.
+<.> Input `source` is `null`. This violates the first precondition.
+<.> Input `nr` is negative. This violates the second precondition.
+
+Whenever a precondition is violated, the `Requires` method will throw an exception of type `PreConditionViolation`.  This exception derives from the general `ContractViolation` exception, which in turn derives from `ProgrammingError`.
+
+`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for precondition violations: a precondition is a contract between the creator of the method and the caller of the method.  When such a contract is not respected, the code must be fixed.
+
+With this in mind, one should never write code to catch a `PreConditionViolation`.  Whenever a `PreConditionViolation` is thrown, there is a bug in the code and that bug must be fixed.
+
+IMPORTANT: *_Never write code that catches a `PreConditionViolation`!_*
+
+Note that the exception message in the thrown `PreConditionViolation` contains the location in the source code of the precondition that was violated.
