@@ -1,3 +1,52 @@
 = Contract postcondition
 
-TBD
+== Ensures
+
+A postcondition for a method can be expressed using the `Ensures` statement.  Postconditions express conditions that are guaranteed to be true after the method finishes executing.  Any method can have as many `Ensures` statements as needed.  These statements must be placed as the last statements inside the method body.  If the method returns a value, this value must be captured in a local variable that can be used inside the `Ensures` statements.  As the final statement inside the method body, this variable is returned as the result.
+
+Note that a postcondition is a contract between the creator of the method and the caller of the method.  The creator of the method promises that certain conditions are met after the method is called.
+
+== Postcondition specification
+
+The following example method illustrates how the `Ensures` statement can be used.
+
+[source,csharp]
+----
+include::example$StringExtensionsPost.cs[]
+----
+<.> We added postconditions to this helper method.
+<.> Postcondition: the returned value is never `null`.
+<.> Postcondition: the length of the returned string should be `nr` times the length of the input string `source`.
+
+When the implementation of a method is correct, the postconditions will always be met.  The above implementation is correct, and as such, the postconditions will never fail.
+
+To illustrate how postconditions can help find bugs, we introduce a faulty implementation in the next example.
+
+[source,csharp]
+----
+include::example$StringExtensionsFaulty.cs[]
+----
+<.> We added postconditions to this helper method.
+<.> We introduced an off-by-one error in the loop counter.
+<.> Postcondition: the same one as in the correct implementation.
+
+== Postcondition validation
+
+The following example shows unit test code that illustrates how the code behaves when a postcondition is violated, and the build constant `CONTRACTS_POST` is defined.
+
+[source,csharp]
+----
+include::example$ContractEnsures.cs[]
+----
+<.> Bugfree implementation: all postconditions are satisfied and the code executes successfully.
+<.> Buggy implementation: the length of the returned value is not the expected length.  The postcondition is violated.
+
+Whenever a postcondition is violated, the `Ensures` method will throw an exception of type `PostConditionViolation`.  This exception derives from the general `ContractViolation` exception, which in turn derives from `ProgrammingError`.
+
+`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for postcondition violations: a postcondition is a contract between the creator of the method and the caller of the method.  When such a contract is not respected, the code must be fixed.  In the case of a postcondition violation, the creator of the method did not respect the contract.
+
+With this in mind, one should never write code to catch a `PostConditionViolation`.  Whenever a `PostConditionViolation` is thrown, there is a bug in the code and that bug must be fixed.
+
+IMPORTANT: *_Never write code that catches a `PostConditionViolation`!_*
+
+Note that the exception message in the thrown `PostConditionViolation` contains the location in the source code of the postcondition that was violated.
