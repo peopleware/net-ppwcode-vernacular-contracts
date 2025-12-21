@@ -15,8 +15,8 @@ the link to the GitHub tag is only added once we are ready to release.
 == `1.3.0` (in beta)
 
 === Release
-- link:{github}1.3.0-beta.3[GitHub]
-- link:{nuget}1.3.0-beta.3[NuGet]
+- link:{github}1.3.0-beta.4[GitHub]
+- link:{nuget}1.3.0-beta.4[NuGet]
 
 === Changes
 - Add support for .NET 9.0 & 10.0
