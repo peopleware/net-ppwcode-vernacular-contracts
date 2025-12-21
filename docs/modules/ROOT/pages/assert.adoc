@@ -61,7 +61,7 @@ Whenever an assertion is violated, the `Assert` method will throw an exception o
 
 `ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for assertion violations: an assertion is a kind of sanity check that the creator of the method places inside the code for his own benefit.  When the assertion is violated, the creator of the code made an assumption which proves not to be true.  The assertion helps to verify these kinds of assumptions and protects them when the code is refactored.  The latter can help when applying performance optimizations.
 
-With this in mind, one should never write code to catch a `AssertViolation`.  Whenever a `AssertViolation` is thrown, there is a bug in the code and that bug must be fixed.
+With this in mind, one should never write code to catch an `AssertViolation`.  Whenever a `AssertViolation` is thrown, there is a bug in the code and that bug must be fixed.
 
 IMPORTANT: *_Never write code that catches an `AssertViolation`!_*
 
@@ -69,9 +69,48 @@ Note that the exception message in the thrown `AssertViolation` contains the loc
 
 == Assume specification
 
-TBD
+The following example illustrates how the `Assume` method can be used.
+
+We introduce a helper class `User` for this.  A `User` is a simple class that contains the `Name` property to hold a user's name.
+
+[source,csharp]
+----
+include::example$User.cs[]
+----
+<.> The `User` constructor requires a name as input.
+<.> Precondition: the given name must not be null or empty.
+<.> The `Name` property: the property only provides a getter and no setter.
+
+As can be seen in the code, an instantiated `User` object has a `Name` that is not `null` and not the empty `string`.
+
+The following code fragment contains a utility function designed to calculate the total length of usernames from a given list of users.
+
+[source,csharp]
+----
+include::example$User.cs[]
+----
+<.> The helper method `SumNameLength`.
+<.> The assertion as a `Where` predicate.
+
+Note that the `User` code specifies a postcondition that `Name` is never `null` or empty.  In the filter on the given not-`null` users`, an `Assume` is added to assert that the `Name` is not `null`.  The `Assume` statement is typically used inside LINQ predicates.
 
 
 == Assume validation
 
-TBD
+The following example shows unit test code that illustrates how the code behaves when an assertion in the form of an `Assume` is violated, and the build constant `CONTRACTS_ASSERT` is defined.  Note that `Assert` and `Assume` shared the same build constant.
+
+[source,csharp]
+----
+include::example$ContractAssume.cs[]
+----
+<.> Bugfree implementation: the assertion in the form of `Assume` is satisfied and the code executes successfully.
+<.> Buggy code: the assumption made in the `Assume` statement is not met because the `Name` property is `null` for one of the users.
+<.> Even though the `Name` property cannot be set through a public accessor, the field itself was overwritten using reflection.
+
+Whenever an assertion in the form of `Assume` is violated, the `Assume` method will throw an exception of type `AssertViolation`.  This is the same as for the `Assert` method.
+
+Take into account the remarks given in the above section for the `Assert` method: one should never write code to catch an `AssertViolation`.  Whenever a `AssertViolation` is thrown (through both an `Assert` and an `Assume` call), there is a bug in the code and that bug must be fixed.
+
+IMPORTANT: *_Never write code that catches an `AssertViolation`!_*
+
+Regarding the example code given earlier: it might have been better to explicitly specify a postcondition for the `Name` property of `User`.  If there was a postcondition that `Name` is never `null` or empty, then the postcondition would be violated and that would have been a better indication of the bug inside the code.

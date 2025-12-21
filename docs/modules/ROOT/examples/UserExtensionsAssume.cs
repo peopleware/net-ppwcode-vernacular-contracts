@@ -1,0 +1,1 @@
+../../../../src/PPWCode.Vernacular.Contracts.I.Tests/Examples/UserExtensionsAssume.cs
