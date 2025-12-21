@@ -19,7 +19,6 @@ the link to the GitHub tag is only added once we are ready to release.
 
 === Changes
 - Add support for .NET 9.0 & 10.0
-- Remove support for .NET 6.0 (fallback to .net standard 2.0 and JetBrains annotations)
 - Build and publish workflows on GitHub actions
 - Upgraded dependencies
 
