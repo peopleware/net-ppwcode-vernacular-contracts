@@ -1,3 +1,77 @@
 = Contract assert
 
+== Assert & Assume
+
+The statements `Assert` and `Assume` are both `assert`-like statements.  These statements are used to validate conditions that must be true at any point in the code and that cannot be expressed as preconditions, postconditions or invariants.
+
+Two variants are available (`Assert` & `Assume`).  They do essentially the same thing, but are used in a different context.  They have a different signature, as can be seen in the following code fragment.
+
+[source,csharp]
+----
+public static void Assert(bool condition)
+{
+  // ...
+}
+
+public static bool Assume(bool condition)
+{
+  // ...
+  return true;
+}
+----
+
+Both statements validate a `boolean` condition.  If the condition evaluates to `false`, the code throws an `AssertViolation`.  If the condition evaluates to `true`, the code continues executing.  The `Assert` statement is used as a separate statement in the code.  The `Assume` statement is used inside a `boolean` expression.  The examples in the following sections will clarify this.
+
+== Assert specification
+
+The following example method illustrates how the `Assert` statement can be used.
+
+[source,csharp]
+----
+include::example$IntArrayExtensionsAssert.cs[]
+----
+<.> We added an assertion to this helper method.
+<.> Assertion: at this place in the code `best` must always be greater than or equal to `current`.
+
+When the implementation of the helper method is correct, the assertions will always be met.  The above implementation is correct, and as such, the assertion will never fail.
+
+To illustrate how assertions can help find bugs, we introduce a faulty implementation in the next example.  Assume that during a refactor, a critical piece of code was omitted.
+
+[source,csharp]
+----
+include::example$IntArrayExtensionsAssertFaulty.cs[]
+----
+<.> We added an assertion to this helper method.
+<.> We introduced a bug in the condition: a critical part of the boolean expression was omitted.
+<.> Assertion: the same assertion as in the previous example.
+
+== Assert validation
+
+The following example shows unit test code that illustrates how the code behaves when an assertion is violated, and the build constant `CONTRACTS_ASSERT` is defined.
+
+[source,csharp]
+----
+include::example$ContractAssert.cs[]
+----
+<.> Bugfree implementation: works correctly for an empty array.
+<.> Bugfree implementation: the assertion is satisfied and the code executes successfully.
+<.> Buggy implementation: the assertion is violated.
+
+Whenever an assertion is violated, the `Assert` method will throw an exception of type `AssertViolation`.  This exception derives from the general `ContractViolation` exception, which in turn derives from `ProgrammingError`.
+
+`ProgrammingError` is defined in the `PPWCode.Vernacular.Exceptions` library and is used for problems at run-time that are caused by incorrect code.  This is applicable for assertion violations: an assertion is a kind of sanity check that the creator of the method places inside the code for his own benefit.  When the assertion is violated, the creator of the code made an assumption which proves not to be true.  The assertion helps to verify these kinds of assumptions and protects them when the code is refactored.  The latter can help when applying performance optimizations.
+
+With this in mind, one should never write code to catch a `AssertViolation`.  Whenever a `AssertViolation` is thrown, there is a bug in the code and that bug must be fixed.
+
+IMPORTANT: *_Never write code that catches an `AssertViolation`!_*
+
+Note that the exception message in the thrown `AssertViolation` contains the location in the source code of the assertion that was violated.
+
+== Assume specification
+
+TBD
+
+
+== Assume validation
+
 TBD
