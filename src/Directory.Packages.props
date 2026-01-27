@@ -19,7 +19,7 @@
     <!-- package versions -->
     <ItemGroup>
         <!-- ppwcode  -->
-        <PackageVersion Include="PPWCode.Vernacular.Exceptions.IV" Version="1.2.0" />
+        <PackageVersion Include="PPWCode.Vernacular.Exceptions.IV" Version="2.*" />
 
         <!-- jetbrains -->
         <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
