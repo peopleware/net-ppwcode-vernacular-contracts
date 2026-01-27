@@ -8,48 +8,26 @@ the link to the GitHub tag is only added once we are ready to release.
 ////
 
 // some helper attributes for the release links
-:github: https://github.com/peopleware/net-ppwcode-vernacular-contracts/tree/I/
+:github: https://github.com/peopleware/net-ppwcode-vernacular-contracts/releases/tag/I%2F
 :nuget: https://www.nuget.org/packages/PPWCode.Vernacular.Contracts.I/
 :ppwcode-docs: https://peopleware.github.io/net-ppwcode-docs/ppwcode-vernacular-contracts-i/
 
-== `1.3.0`
+:release: 1.3.0
+== `{release}`
+include::partial$changelog-release-section.adoc[]
+include::partial$changelog-{release}.adoc
 
-=== Release
-- link:{github}1.3.0[GitHub]
-- link:{nuget}1.3.0[NuGet]
+:release: 1.2.0
+== `{release}`
+include::partial$changelog-release-section.adoc[]
+include::partial$changelog-{release}.adoc
 
-=== Changes
-- Add support for .NET 9.0 & 10.0
-- Build and publish workflows on GitHub actions
-- Upgraded dependencies
-- Added documentation, available on link:{ppwcode-docs}[PPWCode .NET Docs]
+:release: 1.1.0
+== `{release}`
+include::partial$changelog-release-section.adoc[]
+include::partial$changelog-{release}.adoc
 
-
-== `1.2.0`
-
-=== Release
-- link:{github}1.2.0[GitHub]
-- link:{nuget}1.2.0[NuGet]
-
-=== Changes
-- Add support for Microsoft nullability attributes (in .NET Core builds, .NET Framework builds use JetBrains.Annotations attributes)
-
-
-== `1.1.0`
-
-=== Release
-- link:{github}1.1.0[GitHub]
-- link:{nuget}1.1.0[NuGet]
-
-=== Changes
-- Target .net standard 2.0
-- Upgraded dependencies
-
-== `1.0.0`
-
-=== Release
-- link:{github}1.0.0[GitHub]
-- link:{nuget}1.0.0[NuGet]
-
-=== Changes
-- Initial release of the library
+:release: 1.0.0
+== `{release}`
+include::partial$changelog-release-section.adoc[]
+include::partial$changelog-{release}.adoc
