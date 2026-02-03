@@ -1,4 +1,4 @@
-// Copyright 2025 by PeopleWare n.v.
+// Copyright 2026 by PeopleWare n.v.
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -11,7 +11,7 @@
 
 #nullable disable
 
-using PPWCode.Vernacular.Exceptions.IV;
+using System;
 
 namespace PPWCode.Vernacular.Contracts.I.Tests.Examples;
 
@@ -35,7 +35,7 @@ public class Chest
     {
         if (IsLocked)
         {
-            throw new SemanticException("Cannot open when locked.");
+            throw new ApplicationException("Cannot open when locked.");
         }
 
         IsOpen = true;
@@ -52,7 +52,7 @@ public class Chest
     {
         if (IsOpen)
         {
-            throw new SemanticException("Cannot lock when open.");
+            throw new ApplicationException("Cannot lock when open.");
         }
 
         IsLocked = true;

@@ -7,8 +7,4 @@
         <CodeAnalysisRuleSet>..\Analyzer.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="PPWCode.Vernacular.Exceptions.IV" />
-    </ItemGroup>
-
 </Project>
