@@ -132,7 +132,7 @@ jobs:
           FULL_TAG=${GITHUB_REF#refs/tags/}
 
           # Validate tag format with roman numeral prefix
-          if [[ ! $FULL_TAG =~ ^[IVX]+/[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+          if [[ ! $FULL_TAG =~ ^I/[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
             echo "ERROR: Tag '$FULL_TAG' does not match format {ROMAN}/{VERSION}"
             echo "Expected format: I/1.2.3 or II/2.0.0-beta1"
             exit 1
@@ -193,6 +193,10 @@ jobs:
             echo "ERROR: Changelog file '$CHANGELOG_FILE' not found."
             exit 1
           fi
+
+          # Remove GitHub links as GitHub generates these automatically
+          # Example: link:{github-user}rvdginste[@rvdginste]
+          sed -i -E 's/link:\{github-[^}]+\}[^[]*\[([^]]+)\]/\1/g' "$CHANGELOG_FILE"
 
           # Convert AsciiDoc to Markdown using downdoc
           npx downdoc "$CHANGELOG_FILE" -o release_notes.md
