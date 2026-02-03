@@ -23,12 +23,6 @@
         "resolved": "10.0.102",
         "contentHash": "Oxq3RCIJSdtpIU4hLqO7XaDe/Ra3HS9Wi8rJl838SAg6Zu1iQjerA0+xXWBgUFYbgknUGCLOU0T+lzMLkvY9Qg=="
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -72,12 +66,6 @@
         "resolved": "10.0.102",
         "contentHash": "Oxq3RCIJSdtpIU4hLqO7XaDe/Ra3HS9Wi8rJl838SAg6Zu1iQjerA0+xXWBgUFYbgknUGCLOU0T+lzMLkvY9Qg=="
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -120,12 +108,6 @@
         "requested": "[10.*, )",
         "resolved": "10.0.102",
         "contentHash": "Oxq3RCIJSdtpIU4hLqO7XaDe/Ra3HS9Wi8rJl838SAg6Zu1iQjerA0+xXWBgUFYbgknUGCLOU0T+lzMLkvY9Qg=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -173,12 +155,6 @@
           "Microsoft.Build.Tasks.Git": "10.0.102",
           "Microsoft.SourceLink.Common": "10.0.102"
         }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -237,12 +213,6 @@
           "Microsoft.SourceLink.Common": "10.0.102"
         }
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -299,12 +269,6 @@
           "Microsoft.Build.Tasks.Git": "10.0.102",
           "Microsoft.SourceLink.Common": "10.0.102"
         }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -363,12 +327,6 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -410,12 +368,6 @@
           "Microsoft.SourceLink.Common": "10.0.102"
         }
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -451,12 +403,6 @@
           "Microsoft.Build.Tasks.Git": "10.0.102",
           "Microsoft.SourceLink.Common": "10.0.102"
         }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",
@@ -494,12 +440,6 @@
           "Microsoft.SourceLink.Common": "10.0.102"
         }
       },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
-      },
       "StyleCop.Analyzers": {
         "type": "Direct",
         "requested": "[1.2.0-beta.556, )",
@@ -535,12 +475,6 @@
           "Microsoft.Build.Tasks.Git": "10.0.102",
           "Microsoft.SourceLink.Common": "10.0.102"
         }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "Direct",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       },
       "StyleCop.Analyzers": {
         "type": "Direct",

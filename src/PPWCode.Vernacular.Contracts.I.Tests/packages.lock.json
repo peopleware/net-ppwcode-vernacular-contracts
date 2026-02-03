@@ -231,8 +231,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net462": {
@@ -240,12 +239,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "IzAV30z22ESCeQfxP29oVf4qEo8fBGXLXSU6oacv/9Iqe6PzgHDKCaWfwMBak7bSJQM0F5boXWoZS+kChztRIQ=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     ".NETFramework,Version=v4.7": {
@@ -478,8 +471,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net47": {
@@ -487,12 +479,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "s2ik8oLVJHVcQPVNHq+X5UfpQP6RsvoixtWzuW2qZvYjRickfC70OXpCmEUgTxjWumS4qZfZ3ZGR1yH7ATc4Wg=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     ".NETFramework,Version=v4.7.1": {
@@ -725,8 +711,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net471": {
@@ -734,12 +719,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "Kf3vusy+mwHzn+0osmJAMrZNG00/UkwywjwfFKLUWSYEXiIMD6SEMGP9bG3sH1B54IiydxAneLubS5/Ajjn/Tw=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     ".NETFramework,Version=v4.7.2": {
@@ -986,8 +965,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net472": {
@@ -995,12 +973,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "0E7evZXHXaDYYiLRfpyXvCh+yzM2rNTyuZDI+ZO7UUqSc6GfjePiXTdqJGtgIKUwdI81tzQKmaWprnUiPj9hAw=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     ".NETFramework,Version=v4.8": {
@@ -1247,8 +1219,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net48": {
@@ -1256,12 +1227,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "zMk4D+9zyiEWByyQ7oPImPN/Jhpj166Ky0Nlla4eXlNL8hI/BtSJsgR8Inldd4NNpIAH3oh8yym0W2DrhXdSLQ=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     ".NETFramework,Version=v4.8.1": {
@@ -1508,8 +1473,7 @@
       "ppwcode.vernacular.contracts.i": {
         "type": "Project",
         "dependencies": {
-          "JetBrains.Annotations": "[2025.2.2, )",
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
+          "JetBrains.Annotations": "[2025.2.2, )"
         }
       },
       "Microsoft.NETFramework.ReferenceAssemblies.net481": {
@@ -1517,12 +1481,6 @@
         "requested": "[1.0.3, )",
         "resolved": "1.0.3",
         "contentHash": "Vv/20vgHS7VglVOVh8J3Iz/MA+VYKVRp9f7r2qiKBMuzviTOmocG70yq0Q8T5OTmCONkEAIJwETD1zhEfLkAXQ=="
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
       }
     },
     "net10.0": {
@@ -1703,16 +1661,7 @@
         "contentHash": "lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw=="
       },
       "ppwcode.vernacular.contracts.i": {
-        "type": "Project",
-        "dependencies": {
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
-        }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
+        "type": "Project"
       }
     },
     "net6.0": {
@@ -1893,16 +1842,7 @@
         "contentHash": "lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw=="
       },
       "ppwcode.vernacular.contracts.i": {
-        "type": "Project",
-        "dependencies": {
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
-        }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
+        "type": "Project"
       }
     },
     "net8.0": {
@@ -2083,16 +2023,7 @@
         "contentHash": "lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw=="
       },
       "ppwcode.vernacular.contracts.i": {
-        "type": "Project",
-        "dependencies": {
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
-        }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
+        "type": "Project"
       }
     },
     "net9.0": {
@@ -2273,16 +2204,7 @@
         "contentHash": "lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw=="
       },
       "ppwcode.vernacular.contracts.i": {
-        "type": "Project",
-        "dependencies": {
-          "PPWCode.Vernacular.Exceptions.IV": "[2.*, )"
-        }
-      },
-      "PPWCode.Vernacular.Exceptions.IV": {
-        "type": "CentralTransitive",
-        "requested": "[2.*, )",
-        "resolved": "2.2.1",
-        "contentHash": "EnSpiADCKJenktPGhgsDAnsSzbf+HTDq52Wkr2F+58/sanx2rb4//Q68SnYEaOKl/AACQBp+FOKuGih0lYYW0A=="
+        "type": "Project"
       }
     }
   }
