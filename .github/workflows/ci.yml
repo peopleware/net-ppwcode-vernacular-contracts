@@ -43,14 +43,14 @@ jobs:
         # ContinuousIntegrationBuild=true excludes full-framework
         # builds on Linux and macOS
         run: |
-          dotnet restore PPWCode.Vernacular.Contracts.sln \
+          dotnet restore PPWCode.Vernacular.Contracts.slnx \
             --locked-mode \
             -p:Configuration=Release
 
       - name: Build
         shell: bash
         run: |
-          dotnet build PPWCode.Vernacular.Contracts.sln \
+          dotnet build PPWCode.Vernacular.Contracts.slnx \
             --configuration Release \
             --no-restore \
             -p:ContinuousIntegrationBuild=true
@@ -58,7 +58,7 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          dotnet test PPWCode.Vernacular.Contracts.sln \
+          dotnet test PPWCode.Vernacular.Contracts.slnx \
             --configuration Release \
             --no-build \
             --verbosity normal \
