@@ -22,7 +22,7 @@
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/peopleware/net-ppwcode-vernacular-contracts.git</RepositoryUrl>
 
-        <PackageTags>ppwcode vernacular contracts dotnetcore netcore</PackageTags>
+        <PackageTags>ppwcode vernacular contracts dotnetcore netcore gen4 gen5</PackageTags>
         <PackageProjectUrl>https://github.com/peopleware/net-ppwcode-vernacular-contracts</PackageProjectUrl>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
