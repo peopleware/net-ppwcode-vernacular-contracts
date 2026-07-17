@@ -19,15 +19,17 @@
     <!-- package versions -->
     <ItemGroup>
         <!-- jetbrains -->
-        <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
+        <PackageVersion Include="JetBrains.Annotations" Version="2026.*" />
 
         <!-- nunit -->
-        <PackageVersion Include="NUnit" Version="4.4.0" />
-        <PackageVersion Include="NUnit3TestAdapter" Version="5.2.0" />
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
-        <PackageVersion Include="JunitXml.TestLogger" Version="7.0.2" />
-        <PackageVersion Include="Moq" Version="4.20.72" />
-        <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+        <PackageVersion Include="NUnit" Version="4.*" />
+        <PackageVersion Include="JunitXml.TestLogger" Version="8.*" />
+        <PackageVersion Include="Moq" Version="4.*" />
+        <PackageVersion Include="coverlet.collector" Version="10.*" />
+
+        <!-- Last versions that supports .net 6 -->
+        <PackageVersion Include="NUnit3TestAdapter" Version="5.*" />
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.*" />
 
         <!-- .net full framework reference assemblies -->
         <!-- these are explicitly added to avoid issues with cross-platform package lock files -->
