@@ -50,10 +50,12 @@ public class ContractTests : BaseTest
     [TestCaseSource(nameof(PreConditionCases))]
     public void TestPrecondition(string input, string prefix, string result, bool preViolated, bool postViolated)
     {
+        Func<string> lambda = () => TestMethod(input, prefix);
+
         if (preViolated)
         {
             Assert.That(
-                () => TestMethod(input, prefix),
+                lambda,
                 Throws.InstanceOf<PreConditionViolation>()
                     .With.Property(nameof(ContractViolation.MemberName)).EqualTo(nameof(TestMethod)),
                 "Pre-condition is violated and should throw");
@@ -63,7 +65,7 @@ public class ContractTests : BaseTest
         if (postViolated)
         {
             Assert.That(
-                () => TestMethod(input, prefix),
+                lambda,
                 Throws.InstanceOf<PostConditionViolation>()
                     .With.Property(nameof(ContractViolation.MemberName)).EqualTo(nameof(TestMethod)),
                 "Post-condition is violated and should throw");
@@ -71,7 +73,7 @@ public class ContractTests : BaseTest
         }
 
         Assert.That(
-            () => TestMethod(input, prefix),
-            Is.EqualTo(result));
+            lambda,
+            Throws.Nothing);
     }
 }

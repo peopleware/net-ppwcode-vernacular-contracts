@@ -11,6 +11,7 @@
 
 #nullable disable
 
+using System;
 using System.Reflection;
 
 using NUnit.Framework;
@@ -46,11 +47,14 @@ public class ContractAssume : BaseTest
                     BindingFlags.Instance | BindingFlags.NonPublic);
         Contract.Assert(nameFieldInfo != null);
         nameFieldInfo.SetValue(users[0], null); // <.>
-        Assert.Throws<AssertViolation>(
+        Action lambda =
             () =>
             {
                 int totalLength = users.SumNameLength();
-            },
+            };
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<AssertViolation>(),
             "Assume should throw for broken postcondition");
     }
 }

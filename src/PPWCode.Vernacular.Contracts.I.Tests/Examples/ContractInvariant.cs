@@ -54,8 +54,10 @@ public class ContractInvariant : BaseTest
         Assert.That(chest.IsLocked, Is.False);
 
         Exec(() => chest.Lock());
-        Assert.Throws<InvariantViolation>(
-            () => Exec(() => chest.Open()),
+        Action lambda = () => Exec(() => chest.Open());
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<InvariantViolation>(),
             "Invariant should throw for faulty implementation");
     }
 }

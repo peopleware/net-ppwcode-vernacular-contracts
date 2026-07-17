@@ -11,6 +11,8 @@
 
 #nullable disable
 
+using System;
+
 using NUnit.Framework;
 
 namespace PPWCode.Vernacular.Contracts.I.Tests.Examples;
@@ -29,8 +31,10 @@ public class ContractEnsures : BaseTest
     public void TestEnsures_Bug() // <.>
     {
         string s = "Hello";
-        Assert.Throws<PostConditionViolation>(
-            () => s.RepeatWithBug(2),
+        Func<string> lambda = () => s.RepeatWithBug(2);
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<PostConditionViolation>(),
             "Postcondition should throw for faulty implementation");
     }
 }

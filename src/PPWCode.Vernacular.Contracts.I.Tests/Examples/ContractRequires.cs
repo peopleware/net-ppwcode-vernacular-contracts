@@ -11,6 +11,8 @@
 
 #nullable disable
 
+using System;
+
 using NUnit.Framework;
 
 namespace PPWCode.Vernacular.Contracts.I.Tests.Examples;
@@ -29,8 +31,10 @@ public class ContractRequires : BaseTest
     public void TestRequires_InvalidInputSource() // <.>
     {
         string s = null;
-        Assert.Throws<PreConditionViolation>(
-            () => s.RepeatWithRequires(2),
+        Func<string> lambda = () => s.RepeatWithRequires(2);
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<PreConditionViolation>(),
             "Precondition 'source != null' should throw");
     }
 
@@ -38,8 +42,10 @@ public class ContractRequires : BaseTest
     public void TestRequires_InvalidInputNr() // <.>
     {
         string s = "Hello";
-        Assert.Throws<PreConditionViolation>(
-            () => s.RepeatWithRequires(-1),
+        Func<string> lambda = () => s.RepeatWithRequires(-1);
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<PreConditionViolation>(),
             "Precondition 'nr >= 0' should throw");
     }
 }

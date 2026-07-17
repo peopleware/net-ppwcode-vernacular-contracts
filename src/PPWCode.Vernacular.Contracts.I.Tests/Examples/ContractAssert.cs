@@ -11,6 +11,8 @@
 
 #nullable disable
 
+using System;
+
 using NUnit.Framework;
 
 namespace PPWCode.Vernacular.Contracts.I.Tests.Examples;
@@ -38,11 +40,14 @@ public class ContractAssert : BaseTest
     public void TestAssert_Faulty() // <.>
     {
         int[] values = [-5, 7, -1, 8];
-        Assert.Throws<AssertViolation>(
+        Action lambda =
             () =>
             {
                 int? sum = values.MaxSubarraySumFaulty();
-            },
+            };
+        Assert.That(
+            lambda,
+            Throws.InstanceOf<AssertViolation>(),
             "Assert should throw for faulty implementation");
     }
 }
